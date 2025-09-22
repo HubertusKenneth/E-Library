@@ -14,7 +14,10 @@ use App\Http\Controllers\HomeController;
 |--------------------------------------------------------------------------
 */
 
+// Route::get('/', [HomeController::class,'index'])->name('home');
+Route::redirect('/home', '/');
 Route::get('/', [HomeController::class,'index'])->name('home');
+
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class,'show'])->name('books.show');
 

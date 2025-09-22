@@ -37,10 +37,22 @@
         </form>
     @else
         <!-- Guest -->
-        <button onclick="alert('Please login to add this book to favorites!')" 
-                class="px-3 py-2 border rounded text-gray-600 hover:text-gray-900">
-            Add to Favorite
-        </button>
+        <button onclick="showPopup()" 
+        class="px-3 py-2 border rounded text-gray-600 hover:text-gray-900">
+    Add to Favorite
+</button>
+
+<!-- Hidden popup -->
+<div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+    <h2 class="text-lg font-semibold mb-2">Please Login</h2>
+    <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
+    <button onclick="hidePopup()" 
+            class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700">
+      OK
+    </button>
+  </div>
+</div>
     @endauth
 </div>
 
@@ -52,3 +64,12 @@
     {{ $books->withQueryString()->links() }}
   </div>
 @endsection
+
+<script>
+  function showPopup() {
+    document.getElementById('popup').classList.remove('hidden');
+  }
+  function hidePopup() {
+    document.getElementById('popup').classList.add('hidden');
+  }
+</script>
