@@ -25,9 +25,12 @@
       <p class="text-sm text-gray-600">{{ $book->publisher }} • {{ $book->year }}</p>
 
 <div class="mt-4 flex gap-2">
-    <a href="{{ route('books.show', $book) }}" class="px-3 py-2 rounded bg-slate-800 text-white">View Details</a>
+<a href="{{ route('books.show', $book) }}"
+   class="px-3 py-2 rounded text-white bg-slate-800 mb-4">
+   View Details
+</a>
     
-    @auth
+    <!-- @auth -->
         <!-- User login -->
         <form action="{{ route('books.favorite', $book) }}" method="POST">
             @csrf
@@ -38,7 +41,8 @@
     @else
         <!-- Guest -->
         <button onclick="showPopup()" 
-        class="px-3 py-2 border rounded text-gray-600 hover:text-gray-900">
+        class="px-3 py-2 rounded border text-gray bg-white-800 mb-4 hover:text-gray-900">
+        <!-- px-3 py-2 rounded text-white bg-slate-800 mb-4 -->
     Add to Favorite
 </button>
 

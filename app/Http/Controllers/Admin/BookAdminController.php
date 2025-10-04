@@ -12,7 +12,10 @@ class BookAdminController extends Controller
     public function index()
     {
         $books = Book::paginate(12);
-        return view('admin.books.index', compact('books'));
+        // return view('admin.books.index', compact('books'));
+        return view('books.index', compact('books'));
+
+
     }
 
     public function create()

@@ -58,6 +58,8 @@ protected $routeMiddleware = [
     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
     'can' => \Illuminate\Auth\Middleware\Authorize::class,
-    'admin' => \App\Http\Admin\Middleware\AdminMiddleware::class,
+    'admin' => \App\Http\Middleware\AdminMiddleware::class,
+
+
 ];
 }

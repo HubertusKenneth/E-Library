@@ -11,8 +11,8 @@
       <p class="text-3xl font-bold mt-2">{{ $totalBooks }}</p>
     </div>
     <div class="bg-white border rounded p-6 shadow text-center">
-      <h2 class="text-lg font-semibold">Categories</h2>
-      <p class="text-3xl font-bold mt-2">{{ $totalCategories }}</p>
+      <h2 class="text-lg font-semibold">Genre</h2>
+      <p class="text-3xl font-bold mt-2">{{ $totalGenres }}</p>
     </div>
     <div class="bg-white border rounded p-6 shadow text-center">
       <h2 class="text-lg font-semibold">Users</h2>
@@ -25,13 +25,13 @@
   </div>
 
   <div class="bg-white border rounded p-6 shadow mt-8">
-    <h3 class="text-lg font-bold mb-3">Borrowing Rules</h3>
+    <h3 class="text-lg font-bold mb-3">Test</h3>
     <ul class="list-decimal list-inside text-gray-700 space-y-1">
-      <li>Maximum borrowing time is 1 week.</li>
-      <li>Each member can borrow up to 3 books.</li>
-      <li>Late returns will be fined Rp. 15,000/week per book.</li>
-      <li>Please confirm with staff when borrowing books.</li>
-      <li>Fines must be paid immediately when returning books.</li>
+      <li>Test.</li>
+      <li>Test.</li>
+      <li>Test.</li>
+      <li>Test.</li>
+      <li>Test.</li>
     </ul>
   </div>
 @endsection

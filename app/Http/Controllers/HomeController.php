@@ -17,9 +17,11 @@ class HomeController extends Controller
 
         return view('home', [
             'totalBooks' => Book::count(),
-            'totalCategories' => 9, 
+
+            'totalGenres' => Book::distinct('genre')->count('genre'),
+
             'totalUsers' => User::count(),
-            'totalFavorites' => $totalFavorites, 
+            'totalFavorites' => $totalFavorites,
         ]);
     }
 }
