@@ -6,7 +6,6 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
@@ -14,7 +13,6 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
@@ -22,7 +20,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
@@ -55,7 +52,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
@@ -88,14 +84,12 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- Register Button -->
         <div class="flex justify-center mt-6">
             <x-primary-button>
                 {{ __('Register') }}
             </x-primary-button>
         </div>
 
-        <!-- Already Registered -->
         <div class="flex justify-center mt-2">
             <a href="{{ route('login') }}"
                class="text-sm text-indigo-600 hover:text-indigo-900 font-semibold underline">
@@ -103,7 +97,6 @@
             </a>
         </div>
 
-        <!-- Back to Home -->
         <div class="flex justify-center mt-6">
             <a href="{{ url('/') }}"
                class="text-sm text-gray-600 hover:text-gray-900 font-semibold">
@@ -113,7 +106,6 @@
     </form>
 
     <script>
-        // Toggle main password
         document.getElementById('togglePassword').addEventListener('click', function() {
             const input = document.getElementById('password');
             const eyeOpen = document.getElementById('eyeOpen');
@@ -124,7 +116,6 @@
             eyeClosed.classList.toggle('hidden', isHidden);
         });
 
-        // Toggle confirm password
         document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
             const input = document.getElementById('password_confirmation');
             const eyeOpen = document.getElementById('eyeOpenConfirm');
