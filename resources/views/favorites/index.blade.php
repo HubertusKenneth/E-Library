@@ -4,6 +4,7 @@
   <div class="grid md:grid-cols-3 gap-6">
     @forelse($books as $book)
       <div class="bg-white p-4 rounded shadow">
+        <img src="{{ asset('storage/'.$book->cover) }}" class="h-40" alt="cover">
          <h3 class="font-semibold">{{ $book->title }}</h3>
          <p class="text-xs text-gray-500">by {{ $book->author }}</p>
          <a href="{{ route('books.show',$book) }}" class="mt-4 inline-block px-3 py-2 bg-slate-800 text-white rounded">View</a>

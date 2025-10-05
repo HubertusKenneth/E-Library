@@ -42,12 +42,17 @@
         </div>
       </div>
 
-      <span 
+      {{-- <span 
         class="block px-4 py-2 rounded text-gray-400 cursor-not-allowed"
         title=""
       >
         Categories
-      </span>
+      </span> --}}
+
+      <a href="{{ route('categories.index') }}" 
+           class="block px-4 py-2 rounded hover:bg-slate-100">
+            Categories
+        </a>
       
       @auth
         <a href="{{ route('favorites.index') }}" 

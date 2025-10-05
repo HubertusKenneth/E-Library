@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Admin\BookAdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -45,6 +46,9 @@ Route::prefix('admin')
     ->group(function () {
         Route::resource('books', BookAdminController::class);
     });
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
 
 
 require __DIR__ . '/auth.php';
