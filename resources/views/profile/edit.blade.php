@@ -3,37 +3,64 @@
 @section('title', 'Profile')
 
 @section('content')
-<div class="container py-4">
+<div class="flex justify-center items-center bg-gray-100">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-6">Edit Profile</h2>
 
-    @if (session('status') === 'profile-updated')
-        <div class="alert alert-success">Profile updated.</div>
+        {{-- Success message --}}
+        @if (session('status') === 'profile-updated')
+        <div class="text-green-600 text-center mb-4 font-medium">
+            Profile updated successfully!
+        </div>
+    @elseif (session('status') === 'no-changes')
+        <div class="text-red-600 text-center mb-4 font-medium">
+            No changes were made.
+        </div>
     @endif
 
-    <div class="card mb-4">
-        <div class="card-header">Profile Information</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('profile.update') }}">
-                @csrf
-                @method('PATCH')
 
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input name="name" type="text" class="form-control"
-                           value="{{ old('name', auth()->user()->name) }}" required>
-                    @error('name') <div class="text-danger small">{{ $message }}</div> @enderror
-                </div>
+        {{-- Profile Update Form --}}
+        <form method="POST" action="{{ route('profile.update') }}">
+            @csrf
+            @method('PATCH') 
 
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control"
-                           value="{{ old('email', auth()->user()->email) }}" required>
-                    @error('email') <div class="text-danger small">{{ $message }}</div> @enderror
-                </div>
+            <div class="mb-4">
+                <label class="block font-semibold mb-1">Name</label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
+                    value="{{ old('name', auth()->user()->name) }}" 
+                    required
+                >
+                @error('name') 
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div> 
+                @enderror
+            </div>
 
-                <button class="btn btn-primary">Save</button>
-            </form>
-        </div>
+            <div class="mb-4">
+                <label class="block font-semibold mb-1">Email</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
+                    value="{{ old('email', auth()->user()->email) }}" 
+                    required
+                >
+                @error('email') 
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div> 
+                @enderror
+            </div>
+
+            <div class="flex justify-center">
+                <button 
+                    type="submit" 
+                    class="px-6 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition duration-200"
+                >
+                    Save
+                </button>
+            </div>
+        </form>
     </div>
-    
 </div>
 @endsection

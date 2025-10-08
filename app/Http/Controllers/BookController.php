@@ -9,19 +9,39 @@ use Illuminate\Support\Facades\Auth;
 class BookController extends Controller
 {
 
+    // public function index(Request $request)
+    // {
+    //     $q = $request->input('q');
+
+    //     $books = Book::when($q, function($query, $q) {
+    //         $query->where('title', 'like', "%{$q}%")
+    //               ->orWhere('author', 'like', "%{$q}%")
+    //               ->orWhere('genre', 'like', "%{$q}%")
+    //               ->orWhere('publisher', 'like', "%{$q}%");
+    //     })->paginate(9);
+
+    //     return view('books.index', compact('books', 'q'));
+    // }
+
     public function index(Request $request)
     {
         $q = $request->input('q');
+        $sort = $request->input('sort');
 
-        $books = Book::when($q, function($query, $q) {
-            $query->where('title', 'like', "%{$q}%")
-                  ->orWhere('author', 'like', "%{$q}%")
-                  ->orWhere('genre', 'like', "%{$q}%")
-                  ->orWhere('publisher', 'like', "%{$q}%");
-        })->paginate(9);
+        $books = Book::when($q, function ($query, $q) {
+                $query->where('title', 'like', "%{$q}%")
+                    ->orWhere('author', 'like', "%{$q}%")
+                    ->orWhere('genre', 'like', "%{$q}%")
+                    ->orWhere('publisher', 'like', "%{$q}%");
+            })
+            ->when($sort, function ($query, $sort) {
+                $query->orderBy('title', $sort); // 'asc' or 'desc'
+            })
+            ->paginate(9);
 
-        return view('books.index', compact('books', 'q'));
+        return view('books.index', compact('books', 'q', 'sort'));
     }
+
 
 
     public function show(Book $book)
