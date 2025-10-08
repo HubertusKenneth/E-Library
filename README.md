@@ -49,12 +49,18 @@ npm install
 ```bash
 php artisan migrate
 ```
-5. Build asset:
+
+5. Render the property:
+
+```bash
+php artisan storage:link
+```
+6. Build asset:
 
 ```bash
 npm run dev
 ```
-6. Run the server (create new terminal):
+7. Run the server (create new terminal):
 
 ```bash
 php artisan serve
