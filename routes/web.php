@@ -5,7 +5,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Admin\BookAdminController;
-use App\Http\Controllers\Admin\MonitoringController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 
@@ -48,11 +47,6 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function () {
         Route::resource('books', BookAdminController::class);
-
-        Route::get('/monitoring', [MonitoringController::class, 'dashboard'])->name('monitoring.dashboard');
-        Route::get('/monitoring/users', [MonitoringController::class, 'users'])->name('monitoring.users');
-        Route::get('/monitoring/users/{id}', [MonitoringController::class, 'userDetail'])->name('monitoring.users.detail');
-        Route::get('/monitoring/activities', [MonitoringController::class, 'activities'])->name('monitoring.activities');
     });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
