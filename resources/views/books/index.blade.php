@@ -25,39 +25,50 @@
       <p class="text-sm text-gray-600">{{ $book->publisher }} • {{ $book->year }}</p>
 
 <div class="mt-4 flex gap-2">
-<a href="{{ route('books.show', $book) }}"
-   class="px-3 py-2 rounded text-white bg-slate-800 mb-4">
-   View Details
-</a>
-    
-    <!-- @auth -->
-        <!-- User login -->
-        <form action="{{ route('books.favorite', $book) }}" method="POST">
-            @csrf
-            <button type="submit" class="px-3 py-2 border rounded">
-                {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
-            </button>
-        </form>
-    @else
-        <!-- Guest -->
-        <button onclick="showPopup()" 
-        class="px-3 py-2 rounded border text-gray bg-white-800 mb-4 hover:text-gray-900">
-        <!-- px-3 py-2 rounded text-white bg-slate-800 mb-4 -->
-    Add to Favorite
-</button>
+  <a href="{{ route('books.show', $book) }}"
+    class="px-3 py-2 rounded text-white bg-slate-800 mb-4">
+    View Details
+  </a>
 
-<!-- Hidden popup -->
-<div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-  <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
-    <h2 class="text-lg font-semibold mb-2">Please Login</h2>
-    <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
-    <button onclick="hidePopup()" 
-            class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700">
-      OK
+  @auth
+      @if(auth()->user()->role === 'admin')
+          <a href="{{ route('admin.books.edit', $book) }}" 
+            class="px-3 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 mb-4">
+            Edit
+          </a>
+          
+          <form action="{{ route('admin.books.destroy', $book) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this book?');">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="px-3 py-2 rounded text-white bg-red-600 hover:bg-red-700 mb-4">
+                  Delete
+              </button>
+          </form>
+      @else
+          <form action="{{ route('books.favorite', $book) }}" method="POST">
+              @csrf
+              <button type="submit" class="px-3 py-2 border rounded">
+                  {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
+              </button>
+          </form>
+      @endif
+  @else
+      <button onclick="showPopup()" 
+      class="px-3 py-2 rounded border text-gray bg-white-800 mb-4 hover:text-gray-900">
+      Add to Favorite
     </button>
-  </div>
-</div>
-    @endauth
+
+    <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+        <h2 class="text-lg font-semibold mb-2">Please Login</h2>
+        <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
+        <button onclick="hidePopup()" 
+                class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700">
+          OK
+        </button>
+      </div>
+    </div>
+  @endauth
 </div>
 
     </div>
@@ -67,7 +78,6 @@
   <div class="mt-6">
     {{ $books->withQueryString()->links() }}
   </div>
-@endsection
 
 <script>
   function showPopup() {
@@ -77,3 +87,4 @@
     document.getElementById('popup').classList.add('hidden');
   }
 </script>
+@endsection
