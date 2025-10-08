@@ -37,9 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 });
 
-// Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-//     Route::resource('books', BookAdminController::class);
-// });
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::resource('books', BookAdminController::class);
+    Route::get('/users', [App\Http\Controllers\Admin\UserAdminController::class, 'index'])->name('users.index');
+    Route::delete('/users/{id}', [App\Http\Controllers\Admin\UserAdminController::class, 'destroy'])->name('users.destroy');
+});
 
 Route::prefix('admin')
     ->name('admin.')

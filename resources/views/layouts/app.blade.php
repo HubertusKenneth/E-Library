@@ -67,6 +67,21 @@
             Favorite Book
         </span>
       @endauth
+
+      @auth
+        @if(auth()->user()->role === 'admin')
+          <hr class="my-2">
+
+          <div class="px-4 py-2 text-xs uppercase text-gray-500 font-semibold tracking-wide">
+            Admin Panel
+          </div>
+
+          <a href="{{ route('admin.users.index') }}" 
+            class="block px-4 py-2 rounded hover:bg-slate-100">
+            User Management
+          </a>
+        @endif
+      @endauth
     </nav>
   </aside>
 
