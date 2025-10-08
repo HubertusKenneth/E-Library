@@ -34,7 +34,7 @@
 
       <div>
         <label class="block font-semibold">Year</label>
-        <input type="number" name="year" class="w-full border rounded px-3 py-2">
+        <input type="number" name="year" class="w-full border rounded px-3 py-2" min="1000">
       </div>
 
       <div>
