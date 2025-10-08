@@ -5,7 +5,7 @@
     <h1 class="text-2xl font-bold">Here's the results for {{ $decodedGenre }}</h1>
     
     <a href="{{ url('/categories')}}" 
-       class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+       class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900 transition">
       ← Back to Genres
     </a>
   </div>

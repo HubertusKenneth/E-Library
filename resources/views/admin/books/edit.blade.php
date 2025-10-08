@@ -57,7 +57,7 @@
             <p class="text-sm text-gray-500">No cover image uploaded.</p>
         @endif
         <label class="block font-semibold mt-2">New Cover (optional)</label>
-        <input type="file" name="cover" class="w-full border rounded px-3 py-2">
+        <input type="file" name="cover" class="w-full border rounded px-3 py-2 mb-10">
       </div>
 
       <div class="flex justify-between items-center">

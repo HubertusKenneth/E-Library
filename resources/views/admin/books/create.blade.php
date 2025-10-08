@@ -49,11 +49,17 @@
 
       <div>
         <label class="block font-semibold">Cover</label>
-        <input type="file" name="cover" class="w-full border rounded px-3 py-2">
+        <input type="file" name="cover" class="w-full border rounded px-3 py-2 mb-10">
       </div>
 
-      <div class="flex justify-end">
-        <button type="submit" class="px-4 py-2 bg-slate-800 text-white rounded">Submit</button>
+      {{-- 🔘 Tombol Aksi --}}
+      <div class="flex justify-between items-center">
+        <a href="{{ route('admin.books.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+          Cancel
+        </a>
+        <button type="submit" class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900">
+          Submit
+        </button>
       </div>
     </form>
   </div>

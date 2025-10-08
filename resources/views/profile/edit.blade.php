@@ -9,15 +9,14 @@
 
         {{-- Success message --}}
         @if (session('status') === 'profile-updated')
-        <div class="text-green-600 text-center mb-4 font-medium">
-            Profile updated successfully!
-        </div>
-    @elseif (session('status') === 'no-changes')
-        <div class="text-red-600 text-center mb-4 font-medium">
-            No changes were made.
-        </div>
-    @endif
-
+            <div class="text-green-600 text-center mb-4 font-medium">
+                Profile updated successfully!
+            </div>
+        @elseif (session('status') === 'no-changes')
+            <div class="text-red-600 text-center mb-4 font-medium">
+                No changes were made.
+            </div>
+        @endif
 
         {{-- Profile Update Form --}}
         <form method="POST" action="{{ route('profile.update') }}">
@@ -30,8 +29,8 @@
                     type="text" 
                     name="name" 
                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
-                    value="{{ old('name', auth()->user()->name) }}" 
-                    required
+                    placeholder="{{ auth()->user()->name ?? 'Enter your full name' }}"
+                    value="{{ old('name') }}"
                 >
                 @error('name') 
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div> 
@@ -44,8 +43,8 @@
                     type="email" 
                     name="email" 
                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
-                    value="{{ old('email', auth()->user()->email) }}" 
-                    required
+                    placeholder="{{ auth()->user()->email ?? 'Enter your email address' }}"
+                    value="{{ old('email') }}"
                 >
                 @error('email') 
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div> 
