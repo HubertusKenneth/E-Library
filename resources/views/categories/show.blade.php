@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1 class="text-2xl font-bold mb-4">Here's the results for {{ $decodedGenre }}</h1>
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-bold">Here's the results for {{ $decodedGenre }}</h1>
+    
+    <a href="{{ url('/categories')}}" 
+       class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+      ← Back to Genres
+    </a>
+  </div>
 
   @if ($books->isEmpty())
     <p>No books available in this genre.</p>
