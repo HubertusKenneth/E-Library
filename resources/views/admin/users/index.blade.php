@@ -4,7 +4,6 @@
 <div class="max-w-6xl mx-auto mt-10">
     <h1 class="text-3xl font-bold mb-12 text-gray-800">User Management</h1>
 
-    {{-- ✅ Flash Message --}}
     @if(session('success'))
         <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
             {{ session('success') }}
@@ -15,9 +14,23 @@
         </div>
     @endif
 
-    {{-- 🔹 Title Section for Admins --}}
-    <h2 class="text-2xl font-semibold text-gray-700 mb-3 mt-6 border-b pb-2">Admin Accounts</h2>
+    {{-- Admin Section --}}
+    <div class="flex justify-between items-center mb-3 mt-6 border-b pb-2">
+        <h2 class="text-2xl font-semibold text-gray-700">Admin Accounts</h2>
 
+        <button 
+            onclick="openAddAdminModal()" 
+            class="bg-slate-800 text-white p-2 rounded-full hover:bg-slate-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 4v16m8-8H4" />
+            </svg>
+        </button>
+    </div>
+
+    {{-- Admin Table --}}
     <div class="bg-white shadow rounded-lg overflow-hidden mb-10">
         <table class="min-w-full border border-gray-200">
             <thead class="bg-gray-100">
@@ -59,7 +72,6 @@
         </table>
     </div>
 
-    {{-- 🔹 Title Section for Regular Users --}}
     <h2 class="text-2xl font-semibold text-gray-700 mb-3 mt-6 border-b pb-2">User Accounts</h2>
 
     <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -104,7 +116,6 @@
     </div>
 </div>
 
-{{-- ✅ Modal Konfirmasi --}}
 <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
         <h2 class="text-xl font-semibold mb-4 text-gray-800">Delete Confirmation</h2>
@@ -126,7 +137,58 @@
     </div>
 </div>
 
-{{-- ✅ Script Modal --}}
+<div id="addAdminModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Admin</h2>
+
+        <form method="POST" action="{{ route('admin.users.store') }}" novalidate>
+            @csrf
+
+            {{-- Name --}}
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 mb-1">Name</label>
+                <input type="text" id="name" name="name"
+                    class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
+                    value="{{ old('name') }}">
+                @error('name')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Email --}}
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" name="email"
+                    class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
+                    value="{{ old('email') }}">
+                @error('email')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Password --}}
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 mb-1">Password (optional)</label>
+                <input type="password" id="password" name="password"
+                    class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200">
+                @error('password')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+                <p class="text-sm text-gray-500 mt-1">
+                    If left empty, default password will be <strong>admin123</strong>.
+                </p>
+            </div>
+
+            <div class="flex justify-end space-x-3 mt-6">
+                <button type="button" onclick="closeAddAdminModal()"
+                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">Cancel</button>
+                <button type="submit"
+                    class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900 transition">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     function openModal(userId, userName) {
         const modal = document.getElementById('deleteModal');
@@ -135,12 +197,26 @@
 
         form.action = `/admin/users/${userId}`;
         modalText.textContent = `Are you sure you want to delete user "${userName}"?`;
-
         modal.classList.remove('hidden');
     }
 
     function closeModal() {
         document.getElementById('deleteModal').classList.add('hidden');
     }
+
+    function openAddAdminModal() {
+        document.getElementById('addAdminModal').classList.remove('hidden');
+    }
+
+    function closeAddAdminModal() {
+        document.getElementById('addAdminModal').classList.add('hidden');
+    }
+
+    @if ($errors->any())
+        window.addEventListener('load', function() {
+            openAddAdminModal();
+        });
+    @endif
 </script>
 @endsection
+

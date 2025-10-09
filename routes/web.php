@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Admin\BookAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 
@@ -14,7 +15,6 @@ use App\Http\Controllers\HomeController;
 |--------------------------------------------------------------------------
 */
 
-// Home
 Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -38,19 +38,13 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('books', BookAdminController::class);
-    Route::get('/users', [App\Http\Controllers\Admin\UserAdminController::class, 'index'])->name('users.index');
-    Route::delete('/users/{id}', [App\Http\Controllers\Admin\UserAdminController::class, 'destroy'])->name('users.destroy');
-});
 
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware(['auth', 'admin'])
-    ->group(function () {
-        Route::resource('books', BookAdminController::class);
-    });
+    Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
+    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); // ✅ route untuk tambah admin
+    Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
+});
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
-
 
 require __DIR__ . '/auth.php';

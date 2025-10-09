@@ -145,16 +145,19 @@
     <div id="popup-content" 
          class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center transform scale-95 opacity-0 transition-all duration-300">
       
-      <div class="flex justify-center mb-4">
-        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" 
-               class="w-8 h-8 text-red-600 animate-pulse" 
-               fill="none" viewBox="0 0 24 24" 
-               stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" 
-                  d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </div>
+      <div class="flex justify-center mb-4 relative">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 100 100" 
+             class="w-20 h-20 text-red-600">
+          <!-- Circle animation -->
+          <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"
+                  stroke-dasharray="251" stroke-dashoffset="251"
+                  class="animate-draw-circle" />
+          <!-- X -->
+          <path d="M35 35 L65 65 M65 35 L35 65"
+                stroke="currentColor" stroke-width="5" stroke-linecap="round"
+                class="animate-pop-x" />
+        </svg>
       </div>
 
       <h2 class="text-lg font-semibold mb-2">Please Login</h2>
@@ -166,27 +169,55 @@
     </div>
   </div>
 
-<script>
-  function showPopup() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popup-content');
-    popup.classList.remove('hidden');
-
-    requestAnimationFrame(() => {
-      content.classList.remove('scale-95', 'opacity-0');
-      content.classList.add('scale-100', 'opacity-100');
-    });
+  <style>
+  @keyframes drawCircle {
+    to { stroke-dashoffset: 0; }
   }
 
-  function hidePopup() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popup-content');
-
-    content.classList.remove('scale-100', 'opacity-100');
-    content.classList.add('scale-95', 'opacity-0');
-    popup.classList.add('hidden');
+  @keyframes popX {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
   }
-</script>
+
+  @keyframes spinPulse {
+    0% { transform: rotate(0deg) scale(1); opacity: 1; }
+    50% { transform: rotate(180deg) scale(1.05); opacity: 0.9; }
+    100% { transform: rotate(360deg) scale(1); opacity: 1; }
+  }
+
+  .animate-draw-circle {
+    animation: drawCircle 0.6s ease-out forwards, spinPulse 3s ease-in-out 0.6s infinite;
+    transform-origin: center;
+  }
+
+  .animate-pop-x {
+    transform-origin: center;
+    animation: popX 0.4s ease-out 0.6s forwards;
+  }
+  </style>
+
+  <script>
+    function showPopup() {
+      const popup = document.getElementById('popup');
+      const content = document.getElementById('popup-content');
+      popup.classList.remove('hidden');
+
+      requestAnimationFrame(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      });
+    }
+
+    function hidePopup() {
+      const popup = document.getElementById('popup');
+      const content = document.getElementById('popup-content');
+
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      popup.classList.add('hidden');
+    }
+  </script>
 
 @endsection
 
