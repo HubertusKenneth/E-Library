@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -30,14 +30,43 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name' => [
+                'required',
+                'string',
+                'min:3',
+                'unique:users,name',
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'regex:/@gmail\.com$/',
+                'unique:users,email',
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:5',
+                'confirmed',
+            ],
+        ], [
+            'name.required' => 'The name field is required.',
+            'name.min' => 'The name must be at least 3 characters.',
+            'name.unique' => 'This name is already taken.',
+
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.regex' => 'The email must end with @gmail.com.',
+            'email.unique' => 'This email is already registered.',
+
+            'password.required' => 'The password field is required.',
+            'password.min' => 'The password must be at least 5 characters.',
+            'password.confirmed' => 'The password confirmation does not match.',
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => strtolower($request->email), 
             'password' => Hash::make($request->password),
         ]);
 

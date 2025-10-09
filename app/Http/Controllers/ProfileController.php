@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -24,46 +24,31 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    // public function update(ProfileUpdateRequest $request): RedirectResponse
-    // {
-    //     $user = $request->user();
-    //     $validated = $request->validated();
+    public function update(Request $request): RedirectResponse
+    {
+        $user = $request->user();
 
-    //     if (isset($validated['email']) && $validated['email'] !== $user->email) {
-    //         $user->email_verified_at = null;
-    //     }
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
 
-    //     $user->fill([
-    //         'name'  => $validated['name']  ?? $user->name,
-    //         'email' => $validated['email'] ?? $user->email,
-    //     ])->save();
+        if (
+            $validated['name'] === $user->name &&
+            $validated['email'] === $user->email
+        ) {
+            return Redirect::route('profile.edit')->with('status', 'no-changes');
+        }
 
-    //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    // }
-    public function update(Request $request)
-{
-    $user = $request->user();
+        $user->fill($validated)->save();
 
-    // Validate inputs
-    $validated = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'email', 'max:255'],
-    ]);
-
-    // Check if data has changed
-    if (
-        $validated['name'] === $user->name &&
-        $validated['email'] === $user->email
-    ) {
-        return back()->with('status', 'no-changes');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-
-    // If changed, update normally
-    $user->fill($validated)->save();
-
-    return back()->with('status', 'profile-updated');
-}
-
 
     /**
      * Delete the user's account.

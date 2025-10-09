@@ -22,19 +22,16 @@
           </div>
         </div>
 
-        <!-- Tombol Sejajar -->
-        <div class="mt-6 flex items-center gap-3">
-          <!-- BACK -->
+        <div class="mt-6 flex gap-3">
           <a href="{{ route('books.index') }}" 
-             class="px-4 h-10 flex items-center justify-center rounded text-white bg-slate-800 hover:bg-slate-900">
+             class="flex items-center justify-center px-4 h-10 rounded text-white bg-slate-800 hover:bg-slate-900 text-base font-normal">
             Back
           </a>
 
           @auth
               @if(auth()->user()->role === 'admin')
-                  <!-- EDIT -->
                   <a href="{{ route('admin.books.edit', $book) }}" 
-                    class="w-10 h-10 flex items-center justify-center rounded bg-gray-200 hover:bg-gray-300 transition">
+                    class="flex items-center justify-center w-10 h-10 rounded bg-gray-200 hover:bg-gray-300 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24" fill="none" stroke="black" 
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
@@ -44,15 +41,14 @@
                     </svg>
                   </a>
 
-                  <!-- DELETE -->
                   <form action="{{ route('admin.books.destroy', $book) }}" 
                         method="POST" 
                         onsubmit="return confirm('Are you sure you want to delete this book?');" 
-                        class="inline-block">
+                        class="flex items-center">
                       @csrf
                       @method('DELETE')
                       <button type="submit" 
-                              class="w-10 h-10 flex items-center justify-center rounded text-white bg-red-600 hover:bg-red-700">
+                              class="flex items-center justify-center w-10 h-10 rounded text-white bg-red-600 hover:bg-red-700">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                              viewBox="0 0 24 24" fill="none" stroke="currentColor" 
                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
@@ -66,18 +62,16 @@
                       </button>
                   </form>
               @else
-                  <!-- FAVORITE (USER BIASA) -->
-                  <form action="{{ route('books.favorite', $book) }}" method="POST" class="inline-block">
+                  <form action="{{ route('books.favorite', $book) }}" method="POST" class="flex items-center">
                       @csrf
-                      <button class="px-3.5 py-2.5 text-sm border rounded hover:bg-gray-100">
+                      <button class="flex items-center justify-center px-4 h-10 border rounded hover:bg-gray-100 text-base font-normal">
                         {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
                       </button>
                   </form>
               @endif
           @else
-              <!-- BELUM LOGIN -->
               <button onclick="showPopup()" 
-                      class="px-3 py-2 border rounded text-gray-600 hover:text-gray-900">
+                      class="flex items-center justify-center px-4 h-10 border rounded text-gray-600 hover:text-gray-900 text-base font-normal">
                 Add to Favorite
               </button>
 

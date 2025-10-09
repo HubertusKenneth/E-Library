@@ -12,28 +12,45 @@
       class="w-full border rounded px-3 py-2"
     />
 
-<div class="relative">
-  <select 
-    name="sort" 
-    onchange="this.form.submit()" 
-    class="border rounded bg-white w-14 h-12 cursor-pointer text-center font-medium 
-           focus:ring-2 focus:ring-blue-500 pl-6"
-    style="-webkit-appearance: none; -moz-appearance: none; appearance: none;"
-  >
-    <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>A–Z</option>
-    <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Z–A</option>
-  </select>
+    <div x-data="{ open: false, selected: '{{ request('sort') ?? '' }}' }" class="relative">
+      <button 
+        type="button"
+        @click="open = !open" 
+        class="border rounded bg-white w-14 h-12 cursor-pointer flex items-center justify-center font-medium 
+               focus:ring-2 focus:ring-blue-500 transition"
+      >
+        <template x-if="!selected">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" fill="none" 
+              stroke="black" stroke-width="2" 
+              stroke-linecap="round" stroke-linejoin="round"
+              class="w-5 h-5">
+            <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+          </svg>
+        </template>
 
-  <!-- Icon filter -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       viewBox="0 0 24 24" fill="none" 
-       stroke="black" stroke-width="2" 
-       stroke-linecap="round" stroke-linejoin="round"
-       class="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none">
-    <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
-  </svg>
-</div>
+        <template x-if="selected">
+          <span x-text="selected === 'asc' ? 'A–Z' : 'Z–A'"></span>
+        </template>
+      </button>
 
+      <div 
+        x-show="open"
+        @click.away="open = false"
+        class="absolute right-0 mt-2 w-24 bg-white border rounded shadow-lg z-10"
+      >
+        <a href="{{ route('books.index', array_merge(request()->except('page'), ['sort' => 'asc'])) }}"
+           @click="selected='asc'; open=false"
+           class="block px-4 py-2 text-sm hover:bg-gray-100 {{ request('sort') == 'asc' ? 'bg-gray-50 font-semibold' : '' }}">
+          A–Z
+        </a>
+        <a href="{{ route('books.index', array_merge(request()->except('page'), ['sort' => 'desc'])) }}"
+           @click="selected='desc'; open=false"
+           class="block px-4 py-2 text-sm hover:bg-gray-100 {{ request('sort') == 'desc' ? 'bg-gray-50 font-semibold' : '' }}">
+          Z–A
+        </a>
+      </div>
+    </div>
   </form>
 
   @if(request('q') || request('sort'))
@@ -47,7 +64,7 @@
 
   <div class="grid md:grid-cols-3 gap-6">
     @foreach($books as $book)
-      <div class="bg-white rounded shadow p-6">
+      <div class="bg-white rounded shadow p-6 flex flex-col">
         <h3 class="font-semibold">{{ $book->title }}</h3>
         <p class="text-xs text-gray-500">by {{ $book->author }}</p>
 
@@ -61,16 +78,24 @@
 
         <p class="text-sm text-gray-600">{{ $book->publisher }} • {{ $book->year }}</p>
 
-        <div class="mt-4 flex gap-2">
+        <div class="mt-4 flex flex-wrap gap-2 items-center justify-start">
           <a href="{{ route('books.show', $book) }}"
-            class="w-32 px-3 py-2 rounded text-white bg-slate-800 hover:bg-slate-900 text-center">
-            View Details
+             class="w-32 h-11 flex items-center justify-center text-base font-normal text-white bg-slate-800 hover:bg-slate-900 rounded transition">
+             View Details
           </a>
 
           @auth
+              <form action="{{ route('books.favorite', $book) }}" method="POST">
+                  @csrf
+                  <button type="submit" 
+                          class="w-32 h-11 flex items-center justify-center text-base font-normal border rounded bg-white hover:bg-gray-100 transition">
+                      {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
+                  </button>
+              </form>
+
               @if(auth()->user()->role === 'admin')
                   <a href="{{ route('admin.books.edit', $book) }}" 
-                    class="w-10 h-10 rounded bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition">
+                     class="w-10 h-10 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded transition">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24" fill="none" stroke="black" 
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
@@ -87,7 +112,7 @@
                       @csrf
                       @method('DELETE')
                       <button type="submit" 
-                              class="w-10 h-10 rounded text-white bg-red-600 hover:bg-red-700 flex items-center justify-center">
+                              class="w-10 h-10 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white rounded transition">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                              viewBox="0 0 24 24" fill="none" stroke="currentColor" 
                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
@@ -100,31 +125,12 @@
                         </svg>
                       </button>
                   </form>
-              @else
-                  <form action="{{ route('books.favorite', $book) }}" method="POST">
-                      @csrf
-                      <button type="submit" 
-                              class="w-32 px-3 py-2 border rounded hover:bg-gray-100">
-                          {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
-                      </button>
-                  </form>
               @endif
           @else
               <button onclick="showPopup()" 
-                class="w-32 px-3 py-2 rounded border text-gray bg-white hover:text-gray-900">
+                      class="w-32 h-11 flex items-center justify-center text-base font-normal border bg-white hover:bg-gray-100 rounded transition">
                 Add to Favorite
               </button>
-
-              <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-                <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
-                  <h2 class="text-lg font-semibold mb-2">Please Login</h2>
-                  <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
-                  <button onclick="hidePopup()" 
-                          class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700">
-                    OK
-                  </button>
-                </div>
-              </div>
           @endauth
         </div>
       </div>
@@ -135,12 +141,55 @@
     {{ $books->withQueryString()->links() }}
   </div>
 
-  <script>
-    function showPopup() {
-      document.getElementById('popup').classList.remove('hidden');
-    }
-    function hidePopup() {
-      document.getElementById('popup').classList.add('hidden');
-    }
-  </script>
+  <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+    <div id="popup-content" 
+         class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center transform scale-95 opacity-0 transition-all duration-300">
+      
+      <div class="flex justify-center mb-4">
+        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-8 h-8 text-red-600 animate-pulse" 
+               fill="none" viewBox="0 0 24 24" 
+               stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" 
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="text-lg font-semibold mb-2">Please Login</h2>
+      <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
+      <button onclick="hidePopup()" 
+              class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700 transition">
+        OK
+      </button>
+    </div>
+  </div>
+
+<script>
+  function showPopup() {
+    const popup = document.getElementById('popup');
+    const content = document.getElementById('popup-content');
+    popup.classList.remove('hidden');
+
+    requestAnimationFrame(() => {
+      content.classList.remove('scale-95', 'opacity-0');
+      content.classList.add('scale-100', 'opacity-100');
+    });
+  }
+
+  function hidePopup() {
+    const popup = document.getElementById('popup');
+    const content = document.getElementById('popup-content');
+
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    popup.classList.add('hidden');
+  }
+</script>
+
+@endsection
+
+@section('scripts')
+  <script src="//unpkg.com/alpinejs" defer></script>
 @endsection

@@ -7,7 +7,6 @@
     <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 class="text-2xl font-bold text-center mb-6">Edit Profile</h2>
 
-        {{-- Success message --}}
         @if (session('status') === 'profile-updated')
             <div class="text-green-600 text-center mb-4 font-medium">
                 Profile updated successfully!
@@ -18,7 +17,6 @@
             </div>
         @endif
 
-        {{-- Profile Update Form --}}
         <form method="POST" action="{{ route('profile.update') }}">
             @csrf
             @method('PATCH') 
@@ -54,7 +52,7 @@
             <div class="flex justify-center">
                 <button 
                     type="submit" 
-                    class="px-6 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition duration-200"
+                    class="px-6 py-2 mt-5 bg-slate-800 text-white rounded hover:bg-slate-700 transition duration-200"
                 >
                     Save
                 </button>
