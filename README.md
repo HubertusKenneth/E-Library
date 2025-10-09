@@ -50,7 +50,7 @@ npm install
 php artisan migrate
 ```
 
-5. Render the property:
+5. Create a storage link:
 
 ```bash
 php artisan storage:link
