@@ -40,7 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('books', BookAdminController::class);
 
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); // ✅ route untuk tambah admin
+    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store');
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 });
 
