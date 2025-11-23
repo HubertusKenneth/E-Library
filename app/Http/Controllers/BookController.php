@@ -29,11 +29,11 @@ class BookController extends Controller
         $sort = $request->input('sort');
 
         $books = Book::when($q, function ($query, $q) {
-                $query->where('title', 'like', "%{$q}%")
-                    ->orWhere('author', 'like', "%{$q}%")
-                    ->orWhere('genre', 'like', "%{$q}%")
-                    ->orWhere('publisher', 'like', "%{$q}%");
-            })
+            $query->where('title', 'like', "%{$q}%")
+                ->orWhere('author', 'like', "%{$q}%")
+                ->orWhere('genre', 'like', "%{$q}%")
+                ->orWhere('publisher', 'like', "%{$q}%");
+        })
             ->when($sort, function ($query, $sort) {
                 $query->orderBy('title', $sort); // 'asc' or 'desc'
             })
@@ -58,7 +58,7 @@ class BookController extends Controller
         }
 
         if ($user->favorites->contains($book->id)) {
-            $user->favorites()->detach($book->id); 
+            $user->favorites()->detach($book->id);
         } else {
             $user->favorites()->attach($book->id);
         }
@@ -72,9 +72,87 @@ class BookController extends Controller
         return view('books.favorites', compact('books'));
     }
 
-    public function create() {}
-    public function store(Request $request) {}
-    public function edit(string $id) {}
-    public function update(Request $request, string $id) {}
+    public function create()
+    {
+        return view('books.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publisher' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'genre' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $data = $request->only([
+            'title',
+            'author',
+            'publisher',
+            'year',
+            'genre',
+            'description'
+        ]);
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('covers'), $filename);
+            $data['cover'] = $filename;
+        }
+
+        Book::create($data);
+
+        return redirect()->route('books.index')
+            ->with('success', 'Book added successfully!');
+    }
+
+    // public function edit(string $id) {}
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    // public function update(Request $request, string $id) {}
+    public function update(Request $request, Book $book)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publisher' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'genre' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $data = $request->only([
+            'title',
+            'author',
+            'publisher',
+            'year',
+            'genre',
+            'description'
+        ]);
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('covers'), $filename);
+            $data['cover'] = $filename;
+        }
+
+        $book->update($data);
+
+        return redirect()->route('books.index')
+            ->with('success', 'Book updated successfully!');
+    }
+
+
     public function destroy(string $id) {}
 }
