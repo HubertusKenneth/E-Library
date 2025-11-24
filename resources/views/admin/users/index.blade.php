@@ -190,33 +190,7 @@
 </div>
 
 <script>
-    function openModal(userId, userName) {
-        const modal = document.getElementById('deleteModal');
-        const form = document.getElementById('deleteForm');
-        const modalText = document.getElementById('modalText');
-
-        form.action = `/admin/users/${userId}`;
-        modalText.textContent = `Are you sure you want to delete user "${userName}"?`;
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        document.getElementById('deleteModal').classList.add('hidden');
-    }
-
-    function openAddAdminModal() {
-        document.getElementById('addAdminModal').classList.remove('hidden');
-    }
-
-    function closeAddAdminModal() {
-        document.getElementById('addAdminModal').classList.add('hidden');
-    }
-
-    @if ($errors->any())
-        window.addEventListener('load', function() {
-            openAddAdminModal();
-        });
-    @endif
+    const hasErrors = @json($errors->any());
 </script>
 @endsection
 
