@@ -2,29 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Book;
 use Faker\Factory as Faker;
 
 class BookSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    public function run(): void
     {
-        $faker = Faker::create();
+        Book::factory()->count(10)->create();
 
-        for ($i = 0; $i < 10; $i++) {
-            Book::create([
-                'title' => $faker->sentence(3),
-                'author' => $faker->name(),
-                'genre' => $faker->word(),
-                'publisher' => $faker->company(),
-            ]);
-        }
-
+        // 2) Sample books 
         $books = [
             [
                 'title' => 'Avengers: Infinity War',
@@ -33,10 +21,22 @@ class BookSeeder extends Seeder
                 'year' => 2018,
                 'genre' => 'Superhero',
                 'description' => 'Epic superhero crossover.',
+                'cover' => null,
             ],
-            // ... tambah 10-15 sample book arrays
+            [
+                'title' => 'Laskar Pelangi',
+                'author' => 'Andrea Hirata',
+                'publisher' => 'Bentang Pustaka',
+                'year' => 2005,
+                'genre' => 'Drama',
+                'description' => 'Kisah persahabatan anak-anak Belitung.',
+                'cover' => null,
+            ],
+            // tambah sample lain kalo mau
         ];
 
-        foreach ($books as $b) Book::create($b);
+        foreach ($books as $b) {
+            Book::create($b);
+        }
     }
 }
