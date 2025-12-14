@@ -6,8 +6,10 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\LogActivity;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +48,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::post('/login', [AuthController::class, 'login'])
+    ->middleware(LogActivity::class);
+
 
 require __DIR__ . '/auth.php';

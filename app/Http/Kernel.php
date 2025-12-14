@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http;
-
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -59,9 +58,5 @@ protected $routeMiddleware = [
     'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
     'can' => \Illuminate\Auth\Middleware\Authorize::class,
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
-    
-  
-
-
 ];
 }
