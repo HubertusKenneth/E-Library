@@ -8,12 +8,26 @@ use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Cookie;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/locale/{locale}', function (string $locale) {
+    $locale = strtolower($locale);
+
+    if (!in_array($locale, ['en', 'id'], true)) {
+        $locale = 'en';
+    }
+
+    Cookie::queue('locale', $locale, 60 * 24 * 365);
+
+    return redirect()->back();
+})->name('locale.switch');
+
 
 Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -55,6 +69,7 @@ Route::get('/locale/{locale}', function (string $locale) {
 
     return redirect()->back();
 })->name('locale.switch');
+
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');

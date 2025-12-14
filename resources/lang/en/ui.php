@@ -1,21 +1,34 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'dashboard' => 'Dashboard',
-    'books' => 'Books',
-    'categories' => 'Categories',
-    'members' => 'Members',
-    'borrow' => 'Borrow',
-    'returns' => 'Returns',
-    'profile' => 'Profile',
-    'logout' => 'Log out',
+    'brand' => 'E-Library',
 
-    'email' => 'Email',
-    'password' => 'Password',
-    'confirm_password' => 'Confirm Password',
-    'remember_me' => 'Remember me',
-    'forgot_password' => 'Forgot your password?',
-    'login' => 'Log in',
-    'register' => 'Register',
+    'home' => 'Home',
+    'features' => 'Features',
+
+    'all_books' => 'All Books',
+    'view_books' => 'View Books',
+    'add_book' => 'Add Book',
+
+    'categories' => 'Categories',
+    'favorite_book' => 'Favorite Books',
+    'login_required_favorites' => 'Please log in to view favorites.',
+
+    'admin_panel' => 'Admin Panel',
+    'user_management' => 'User Management',
+
+    'profile' => 'Profile',
+    'sign_out' => 'Sign out',
+    'sign_in' => 'Sign in',
+
+    'welcome' => 'Welcome',
+    'total_books' => 'Total Books',
+    'genre' => 'Genre',
+    'books_read' => 'Books Read',
+    'current_favorites' => 'Current Favorites',
+
+    'user_features' => 'User Features',
+    'user_features_1' => 'Save your favorite books',
+    'user_features_2' => 'Browse by categories',
+    'user_features_3' => 'Borrow and manage books easily',
 ];
