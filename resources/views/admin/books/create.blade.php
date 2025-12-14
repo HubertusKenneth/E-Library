@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-    <h1 class="text-2xl font-bold mb-6">Add Book</h1>
+    <h1 class="text-2xl font-bold mb-6">{{ __('ui.add_book') }}</h1>
 
     @if ($errors->any())
       <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
@@ -18,47 +18,47 @@
       @csrf
 
       <div>
-        <label class="block font-semibold">Title</label>
+        <label class="block font-semibold">{{ __('ui.title') }}</label>
         <input type="text" name="title" class="w-full border rounded px-3 py-2" required>
       </div>
 
       <div>
-        <label class="block font-semibold">Author</label>
+        <label class="block font-semibold">{{ __('ui.author') }}</label>
         <input type="text" name="author" class="w-full border rounded px-3 py-2" required>
       </div>
 
       <div>
-        <label class="block font-semibold">Publisher</label>
+        <label class="block font-semibold">{{ __('ui.publisher') }}</label>
         <input type="text" name="publisher" class="w-full border rounded px-3 py-2">
       </div>
 
       <div>
-        <label class="block font-semibold">Year</label>
+        <label class="block font-semibold">{{ __('ui.year') }}</label>
         <input type="number" name="year" class="w-full border rounded px-3 py-2" min="1000">
       </div>
 
       <div>
-        <label class="block font-semibold">Genre</label>
+        <label class="block font-semibold">{{ __('ui.genre_field') }}</label>
         <input type="text" name="genre" class="w-full border rounded px-3 py-2">
       </div>
 
       <div>
-        <label class="block font-semibold">Description</label>
+        <label class="block font-semibold">{{ __('ui.description') }}</label>
         <textarea name="description" rows="4" class="w-full border rounded px-3 py-2"></textarea>
       </div>
 
       <div>
-        <label class="block font-semibold">Cover</label>
+        <label class="block font-semibold">{{ __('ui.cover') }}</label>
         <input type="file" name="cover" class="w-full border rounded px-3 py-2 mb-10">
       </div>
 
       {{-- 🔘 Tombol Aksi --}}
       <div class="flex justify-between items-center">
         <a href="{{ route('admin.books.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
-          Cancel
+          {{ __('ui.cancel') }}
         </a>
         <button type="submit" class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900">
-          Submit
+          {{ __('ui.submit') }}
         </button>
       </div>
     </form>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1 class="text-2xl font-bold mb-4">Genres</h1>
+  <h1 class="text-2xl font-bold mb-4">{{ __('ui.genres') }}</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     @foreach ($genres as $genre)

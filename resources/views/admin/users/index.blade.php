@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-6xl mx-auto mt-10">
-    <h1 class="text-3xl font-bold mb-12 text-gray-800">User Management</h1>
+    <h1 class="text-3xl font-bold mb-12 text-gray-800">{{ __('ui.user_management') }}</h1>
 
     @if(session('success'))
         <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
@@ -16,7 +16,7 @@
 
     {{-- Admin Section --}}
     <div class="flex justify-between items-center mb-3 mt-6 border-b pb-2">
-        <h2 class="text-2xl font-semibold text-gray-700">Admin Accounts</h2>
+        <h2 class="text-2xl font-semibold text-gray-700">{{ __('ui.admin_accounts') }}</h2>
 
         <button 
             onclick="openAddAdminModal()" 
@@ -36,11 +36,11 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 border-b text-left w-1/12">#</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Name</th>
-                    <th class="py-2 px-4 border-b text-left w-3/12">Email</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Role</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Registered</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Action</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.name') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-3/12">{{ __('ui.email') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.role') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.registered') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,13 +56,13 @@
                                 <button 
                                     class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
                                     onclick="openModal({{ $user->id }}, '{{ $user->name }}')">
-                                    Delete
+                                    {{ __('ui.delete') }}
                                 </button>
                             @else
                                 <button 
                                     class="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
                                     disabled>
-                                    Delete
+                                    {{ __('ui.delete') }}
                                 </button>
                             @endif
                         </td>
@@ -72,18 +72,18 @@
         </table>
     </div>
 
-    <h2 class="text-2xl font-semibold text-gray-700 mb-3 mt-6 border-b pb-2">User Accounts</h2>
+    <h2 class="text-2xl font-semibold text-gray-700 mb-3 mt-6 border-b pb-2">{{ __('ui.user_accounts') }}</h2>
 
     <div class="bg-white shadow rounded-lg overflow-hidden">
         <table class="min-w-full border border-gray-200">
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 border-b text-left w-1/12">#</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Name</th>
-                    <th class="py-2 px-4 border-b text-left w-3/12">Email</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Role</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Registered</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">Action</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.name') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-3/12">{{ __('ui.email') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.role') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.registered') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('ui.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,13 +99,13 @@
                                 <button 
                                     class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
                                     onclick="openModal({{ $user->id }}, '{{ $user->name }}')">
-                                    Delete
+                                    {{ __('ui.delete') }}
                                 </button>
                             @else
                                 <button 
                                     class="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
                                     disabled>
-                                    Delete
+                                    {{ __('ui.delete') }}
                                 </button>
                             @endif
                         </td>
@@ -118,19 +118,19 @@
 
 <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800">Delete Confirmation</h2>
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">{{ __('ui.delete_confirmation') }}</h2>
         <p class="text-gray-600 mb-6" id="modalText"></p>
 
         <div class="flex justify-end space-x-3">
             <button onclick="closeModal()" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 transition">
-                Cancel
+                {{ __('ui.cancel') }}
             </button>
 
             <form id="deleteForm" method="POST" class="inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition">
-                    Delete
+                    {{ __('ui.delete') }}
                 </button>
             </form>
         </div>
@@ -139,14 +139,14 @@
 
 <div id="addAdminModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Admin</h2>
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">{{ __('ui.add_new_admin') }}</h2>
 
         <form method="POST" action="{{ route('admin.users.store') }}" novalidate>
             @csrf
 
             {{-- Name --}}
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 mb-1">Name</label>
+                <label for="name" class="block text-gray-700 mb-1">{{ __('ui.name') }}</label>
                 <input type="text" id="name" name="name"
                     class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
                     value="{{ old('name') }}">
@@ -157,7 +157,7 @@
 
             {{-- Email --}}
             <div class="mb-4">
-                <label for="email" class="block text-gray-700 mb-1">Email</label>
+                <label for="email" class="block text-gray-700 mb-1">{{ __('ui.email') }}</label>
                 <input type="email" id="email" name="email"
                     class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
                     value="{{ old('email') }}">
@@ -168,22 +168,22 @@
 
             {{-- Password --}}
             <div class="mb-4">
-                <label for="password" class="block text-gray-700 mb-1">Password (optional)</label>
+                <label for="password" class="block text-gray-700 mb-1">{{ __('ui.password_optional') }}</label>
                 <input type="password" id="password" name="password"
                     class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200">
                 @error('password')
                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                 @enderror
                 <p class="text-sm text-gray-500 mt-1">
-                    If left empty, default password will be <strong>admin123</strong>.
+                    {!! __('ui.default_password_note', ['password' => '<strong>admin123</strong>']) !!}
                 </p>
             </div>
 
             <div class="flex justify-end space-x-3 mt-6">
                 <button type="button" onclick="closeAddAdminModal()"
-                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">Cancel</button>
+                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">{{ __('ui.cancel') }}</button>
                 <button type="submit"
-                    class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900 transition">Add</button>
+                    class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900 transition">{{ __('ui.add') }}</button>
             </div>
         </form>
     </div>
@@ -191,6 +191,8 @@
 
 <script>
     const hasErrors = @json($errors->any());
+    window.i18n = {
+        deleteUserConfirm: @json(__('ui.confirm_delete_user', ['name' => '__NAME__']))
+    };
 </script>
 @endsection
-

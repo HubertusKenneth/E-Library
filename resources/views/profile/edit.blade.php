@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', __('ui.profile'))
 
 @section('content')
 <div class="flex justify-center items-center bg-gray-100">
     <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center mb-6">Edit Profile</h2>
+        <h2 class="text-2xl font-bold text-center mb-6">{{ __('ui.edit_profile') }}</h2>
 
         @if (session('status') === 'profile-updated')
             <div class="text-green-600 text-center mb-4 font-medium">
-                Profile updated successfully!
+                {{ __('ui.profile_updated_success') }}
             </div>
         @elseif (session('status') === 'no-changes')
             <div class="text-red-600 text-center mb-4 font-medium">
-                No changes were made.
+                {{ __('ui.no_changes_made') }}
             </div>
         @endif
 
@@ -22,12 +22,12 @@
             @method('PATCH') 
 
             <div class="mb-4">
-                <label class="block font-semibold mb-1">Name</label>
+                <label class="block font-semibold mb-1">{{ __('ui.name') }}</label>
                 <input 
                     type="text" 
                     name="name" 
                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
-                    placeholder="{{ auth()->user()->name ?? 'Enter your full name' }}"
+                    placeholder="{{ auth()->user()->name ?? __('ui.enter_full_name') }}"
                     value="{{ old('name') }}"
                 >
                 @error('name') 
@@ -36,12 +36,12 @@
             </div>
 
             <div class="mb-4">
-                <label class="block font-semibold mb-1">Email</label>
+                <label class="block font-semibold mb-1">{{ __('ui.email') }}</label>
                 <input 
                     type="email" 
                     name="email" 
                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500" 
-                    placeholder="{{ auth()->user()->email ?? 'Enter your email address' }}"
+                    placeholder="{{ auth()->user()->email ?? __('ui.enter_email') }}"
                     value="{{ old('email') }}"
                 >
                 @error('email') 
@@ -54,7 +54,7 @@
                     type="submit" 
                     class="px-6 py-2 mt-5 bg-slate-800 text-white rounded hover:bg-slate-700 transition duration-200"
                 >
-                    Save
+                    {{ __('ui.save') }}
                 </button>
             </div>
         </form>

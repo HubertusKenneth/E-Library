@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-  <h2 class="text-center text-2xl font-semibold mb-6">Library Catalog</h2>
+  <h2 class="text-center text-2xl font-semibold mb-6">{{ __('ui.library_catalog') }}</h2>
 
   <form method="GET" class="max-w-md mx-auto mb-6 flex gap-2 items-center">
     <input 
       type="text" 
       name="q" 
       value="{{ $q ?? '' }}" 
-      placeholder="Search by title, author, or genre..."
+      placeholder="{{ __('ui.search_placeholder') }}"
       class="w-full border rounded px-3 py-2"
     />
 
@@ -57,7 +57,7 @@
     <div class="text-center mb-4">
       <a href="{{ route('books.index') }}" 
          class="text-sm text-slate-600 hover:underline">
-         Clear filters
+         {{ __('ui.clear_filters') }}
       </a>
     </div>
   @endif
@@ -66,7 +66,7 @@
     @foreach($books as $book)
       <div class="bg-white rounded shadow p-6 flex flex-col">
         <h3 class="font-semibold">{{ $book->title }}</h3>
-        <p class="text-xs text-gray-500">by {{ $book->author }}</p>
+        <p class="text-xs text-gray-500">{{ __('ui.by_author_lower', ['author' => $book->author]) }}</p>
 
         <div class="my-4 flex justify-center">
           @if($book->cover)
@@ -81,7 +81,7 @@
         <div class="mt-4 flex flex-wrap gap-2 items-center justify-start">
           <a href="{{ route('books.show', $book) }}"
              class="w-32 h-11 flex items-center justify-center text-base font-normal text-white bg-slate-800 hover:bg-slate-900 rounded transition">
-             View Details
+             {{ __('ui.view_details') }}
           </a>
 
           @auth
@@ -89,7 +89,7 @@
                   @csrf
                   <button type="submit" 
                           class="w-32 h-11 flex items-center justify-center text-base font-normal border rounded bg-white hover:bg-gray-100 transition">
-                      {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
+                      {{ auth()->user()->favorites->contains($book->id) ? __('ui.unfavorite') : __('ui.add_to_favorite') }}
                   </button>
               </form>
 
@@ -107,7 +107,7 @@
 
                   <form action="{{ route('admin.books.destroy', $book) }}" 
                         method="POST" 
-                        onsubmit="return confirm('Are you sure you want to delete this book?');" 
+                        onsubmit="return confirm('{{ __('ui.confirm_delete_book') }}');" 
                         class="inline-block">
                       @csrf
                       @method('DELETE')
@@ -129,7 +129,7 @@
           @else
               <button onclick="showPopup()" 
                       class="w-32 h-11 flex items-center justify-center text-base font-normal border bg-white hover:bg-gray-100 rounded transition">
-                Add to Favorite
+                {{ __('ui.add_to_favorite') }}
               </button>
           @endauth
         </div>
@@ -149,22 +149,20 @@
         <svg xmlns="http://www.w3.org/2000/svg" 
              viewBox="0 0 100 100" 
              class="w-20 h-20 text-red-600">
-          <!-- Circle animation -->
           <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"
                   stroke-dasharray="251" stroke-dashoffset="251"
                   class="animate-draw-circle" />
-          <!-- X -->
           <path d="M35 35 L65 65 M65 35 L35 65"
                 stroke="currentColor" stroke-width="5" stroke-linecap="round"
                 class="animate-pop-x" />
         </svg>
       </div>
 
-      <h2 class="text-lg font-semibold mb-2">Please Login</h2>
-      <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
+      <h2 class="text-lg font-semibold mb-2">{{ __('ui.please_login') }}</h2>
+      <p class="text-gray-600 mb-4">{{ __('ui.login_needed_favorites') }}</p>
       <button onclick="hidePopup()" 
               class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700 transition">
-        OK
+        {{ __('ui.ok') }}
       </button>
     </div>
   </div>
@@ -173,32 +171,25 @@
   @keyframes drawCircle {
     to { stroke-dashoffset: 0; }
   }
-
   @keyframes popX {
     0% { transform: scale(0); opacity: 0; }
     60% { transform: scale(1.2); opacity: 1; }
     100% { transform: scale(1); }
   }
-
   @keyframes spinPulse {
     0% { transform: rotate(0deg) scale(1); opacity: 1; }
     50% { transform: rotate(180deg) scale(1.05); opacity: 0.9; }
     100% { transform: rotate(360deg) scale(1); opacity: 1; }
   }
-
   .animate-draw-circle {
     animation: drawCircle 0.6s ease-out forwards, spinPulse 3s ease-in-out 0.6s infinite;
     transform-origin: center;
   }
-
   .animate-pop-x {
     transform-origin: center;
     animation: popX 0.4s ease-out 0.6s forwards;
   }
   </style>
-
-
-
 @endsection
 
 @section('scripts')

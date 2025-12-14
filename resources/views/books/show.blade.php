@@ -14,7 +14,7 @@
       <div class="flex-1 flex flex-col justify-between">
         <div>
           <h1 class="text-2xl font-bold">{{ $book->title }}</h1>
-          <p class="text-gray-500">by {{ $book->author }}</p>
+          <p class="text-gray-500">{{ __('ui.by_author_lower', ['author' => $book->author]) }}</p>
           <p class="mt-4">{{ $book->description }}</p>
 
           <div class="mt-4">
@@ -25,7 +25,7 @@
         <div class="mt-6 flex gap-3">
           <a href="{{ route('books.index') }}" 
              class="flex items-center justify-center px-4 h-10 rounded text-white bg-slate-800 hover:bg-slate-900 text-base font-normal">
-            Back
+            {{ __('ui.back') }}
           </a>
 
           @auth
@@ -43,7 +43,7 @@
 
                   <form action="{{ route('admin.books.destroy', $book) }}" 
                         method="POST" 
-                        onsubmit="return confirm('Are you sure you want to delete this book?');" 
+                        onsubmit="return confirm('{{ __('ui.confirm_delete_book') }}');" 
                         class="flex items-center">
                       @csrf
                       @method('DELETE')
@@ -65,23 +65,23 @@
                   <form action="{{ route('books.favorite', $book) }}" method="POST" class="flex items-center">
                       @csrf
                       <button class="flex items-center justify-center px-4 h-10 border rounded hover:bg-gray-100 text-base font-normal">
-                        {{ auth()->user()->favorites->contains($book->id) ? 'Unfavorite' : 'Add to Favorite' }}
+                        {{ auth()->user()->favorites->contains($book->id) ? __('ui.unfavorite') : __('ui.add_to_favorite') }}
                       </button>
                   </form>
               @endif
           @else
               <button onclick="showPopup()" 
                       class="flex items-center justify-center px-4 h-10 border rounded text-gray-600 hover:text-gray-900 text-base font-normal">
-                Add to Favorite
+                {{ __('ui.add_to_favorite') }}
               </button>
 
               <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                 <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
-                  <h2 class="text-lg font-semibold mb-2">Please Login</h2>
-                  <p class="text-gray-600 mb-4">You need to login to add this book to favorites!</p>
+                  <h2 class="text-lg font-semibold mb-2">{{ __('ui.please_login') }}</h2>
+                  <p class="text-gray-600 mb-4">{{ __('ui.login_needed_favorites') }}</p>
                   <button onclick="hidePopup()" 
                           class="px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-700">
-                    OK
+                    {{ __('ui.ok') }}
                   </button>
                 </div>
               </div>
@@ -91,5 +91,3 @@
     </div>
   </div>
 @endsection
-
-
