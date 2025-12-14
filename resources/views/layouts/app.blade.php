@@ -86,38 +86,53 @@
     <header class="bg-white shadow px-6 py-4 flex justify-between items-center relative">
       <button @click="sidebarOpen = !sidebarOpen" class="text-2xl">&#9776;</button>
 
-      <div class="relative" x-data="{ open: false }">
-        @auth
-          <button @click="open = !open" class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center">
-            {{ strtoupper(substr(auth()->user()->name,0,1)) }}
-          </button>
+      <div class="flex items-center gap-3">
+        @php($loc = app()->getLocale())
+        <div class="flex items-center gap-2">
+          <a href="{{ route('locale.switch', ['locale' => 'en']) }}"
+            class="px-3 py-1 rounded border text-sm hover:bg-slate-100 {{ $loc === 'en' ? 'bg-slate-200 font-semibold' : '' }}">
+            EN
+          </a>
+          <a href="{{ route('locale.switch', ['locale' => 'id']) }}"
+            class="px-3 py-1 rounded border text-sm hover:bg-slate-100 {{ $loc === 'id' ? 'bg-slate-200 font-semibold' : '' }}">
+            ID
+          </a>
+        </div>
 
-          <div 
-            x-show="open" 
-            @click.away="open = false"
-            x-transition 
-            class="absolute right-0 mt-2 w-40 bg-white border shadow rounded"
-          >
-            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.profile') }}</a>
-            <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <button class="w-full text-left px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.sign_out') }}</button>
-            </form>
-          </div>
-        @else
-          <button @click="open = !open" class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center">G</button>
-          <div 
-            x-show="open" 
-            @click.away="open = false"
-            x-transition 
-            class="absolute right-0 mt-2 w-40 bg-white border shadow rounded"
-          >
-            <button class="block w-full text-left px-4 py-2 text-sm text-gray-400 cursor-not-allowed">{{ __('ui.profile') }}</button>
-            <a href="{{ route('login') }}" class="block px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.sign_in') }}</a>
-          </div>
-        @endauth
+        <div class="relative" x-data="{ open: false }">
+          @auth
+            <button @click="open = !open" class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center">
+              {{ strtoupper(substr(auth()->user()->name,0,1)) }}
+            </button>
+
+            <div
+              x-show="open"
+              @click.away="open = false"
+              x-transition
+              class="absolute right-0 mt-2 w-40 bg-white border shadow rounded"
+            >
+              <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.profile') }}</a>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="w-full text-left px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.sign_out') }}</button>
+              </form>
+            </div>
+          @else
+            <button @click="open = !open" class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center">G</button>
+            <div
+              x-show="open"
+              @click.away="open = false"
+              x-transition
+              class="absolute right-0 mt-2 w-40 bg-white border shadow rounded"
+            >
+              <button class="block w-full text-left px-4 py-2 text-sm text-gray-400 cursor-not-allowed">{{ __('ui.profile') }}</button>
+              <a href="{{ route('login') }}" class="block px-4 py-2 text-sm hover:bg-slate-100">{{ __('ui.sign_in') }}</a>
+            </div>
+          @endauth
+        </div>
       </div>
     </header>
+
 
     <main class="p-6">
       @yield('content')

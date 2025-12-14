@@ -44,6 +44,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::get('/locale/{locale}', function (string $locale) {
+    $locale = strtolower($locale);
+
+    if (!in_array($locale, ['en', 'id'], true)) {
+        $locale = 'en';
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+})->name('locale.switch');
+
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
 
