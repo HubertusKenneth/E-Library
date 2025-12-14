@@ -85,17 +85,4 @@
         </a>
     </div>
 
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const eyeOpen = document.getElementById('eyeOpen');
-            const eyeClosed = document.getElementById('eyeClosed');
-
-            const isHidden = passwordInput.type === 'password';
-            passwordInput.type = isHidden ? 'text' : 'password';
-
-            eyeOpen.classList.toggle('hidden', !isHidden);
-            eyeClosed.classList.toggle('hidden', isHidden);
-        });
-    </script>
 </x-guest-layout>

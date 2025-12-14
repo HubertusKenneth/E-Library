@@ -118,25 +118,5 @@
         </div>
     </form>
 
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const input = document.getElementById('password');
-            const eyeOpen = document.getElementById('eyeOpen');
-            const eyeClosed = document.getElementById('eyeClosed');
-            const isHidden = input.type === 'password';
-            input.type = isHidden ? 'text' : 'password';
-            eyeOpen.classList.toggle('hidden', !isHidden);
-            eyeClosed.classList.toggle('hidden', isHidden);
-        });
 
-        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
-            const input = document.getElementById('password_confirmation');
-            const eyeOpen = document.getElementById('eyeOpenConfirm');
-            const eyeClosed = document.getElementById('eyeClosedConfirm');
-            const isHidden = input.type === 'password';
-            input.type = isHidden ? 'text' : 'password';
-            eyeOpen.classList.toggle('hidden', !isHidden);
-            eyeClosed.classList.toggle('hidden', isHidden);
-        });
-    </script>
 </x-guest-layout>

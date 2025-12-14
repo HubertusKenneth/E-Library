@@ -23,7 +23,7 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,7 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('books', BookAdminController::class);
 
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); // ✅ route untuk tambah admin
+    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); 
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 });
 

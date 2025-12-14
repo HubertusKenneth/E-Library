@@ -197,27 +197,7 @@
   }
   </style>
 
-  <script>
-    function showPopup() {
-      const popup = document.getElementById('popup');
-      const content = document.getElementById('popup-content');
-      popup.classList.remove('hidden');
 
-      requestAnimationFrame(() => {
-        content.classList.remove('scale-95', 'opacity-0');
-        content.classList.add('scale-100', 'opacity-100');
-      });
-    }
-
-    function hidePopup() {
-      const popup = document.getElementById('popup');
-      const content = document.getElementById('popup-content');
-
-      content.classList.remove('scale-100', 'opacity-100');
-      content.classList.add('scale-95', 'opacity-0');
-      popup.classList.add('hidden');
-    }
-  </script>
 
 @endsection
 
