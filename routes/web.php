@@ -47,6 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
     Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); 
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
+    Route::get('/activity', [App\Http\Controllers\Admin\ActivityLogController::class, 'index'])->name('activity.index');
 });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -54,6 +55,7 @@ Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('ca
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware(LogActivity::class);
+
 
 
 require __DIR__ . '/auth.php';

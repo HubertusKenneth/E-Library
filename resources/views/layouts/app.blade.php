@@ -11,16 +11,88 @@
   <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body class="bg-gray-100">
-  @if (session()->has('error'))
-    <div style="
-        background-color: #f8d7da; 
-        color: #721c24; 
-        border: 1px solid #f5c6cb; 
-        padding: 15px; 
-        margin-bottom: 20px;
+@if (session('throttle_error_message') && session('limit_reached'))
+    <div class="limit-popup" style="
+        position: fixed; 
+        top: 25%; 
+        left: 55%; 
+        transform: translate(-50%, -50%);
+        background-color: #ffebee;
+        color: #b71c1c; 
+        border: 2px solid #ef9a9a; 
+        border-radius: 10px; 
+        padding: 30px; 
+        z-index: 9999; 
+        box-shadow: 0 6px 12px rgba(0,0,0,.3);
         text-align: center;
+        width: 80%;
+        max-width: 450px;
     ">
-        {{ session('error') }}
+        <h3 style="margin-top: 0; font-size: 1.5rem;">Access Denied</h3>
+        <p style="font-size: 1.1rem; line-height: 1.4;">{{ session('throttle_error_message') }}</p>
+        
+        <a href="{{ route('login') }}" style="
+            display: inline-block; 
+            padding: 12px 25px; 
+            margin-top: 20px;
+            background-color: #c62828; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        " onmouseover="this.style.backgroundColor='#d32f2f'" onmouseout="this.style.backgroundColor='#c62828'">
+            Log In Now
+        </a>
+        
+        <button onclick="this.closest('.limit-popup').remove()" style="
+            background: none;
+            border: none;
+            color: #b71c1c; 
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+        ">
+            Dismiss
+        </button>
+    </div>
+@endif
+  @if (session('error'))
+    <div class="favorite-limit-popup" style="
+        position: fixed; 
+        top: 25%; 
+        left: 55%; 
+        transform: translate(-50%, -50%);
+        background-color: #ffebee; 
+        color: #b71c1c; 
+        border: 2px solid #ef9a9a; 
+        border-radius: 10px; 
+        padding: 30px; 
+        z-index: 9999; 
+        box-shadow: 0 6px 12px rgba(0,0,0,.3);
+        text-align: center;
+        width: 80%;
+        max-width: 450px;
+    ">
+        <h3 style="margin-top: 0; font-size: 1.5rem;">Favorite Limit Reached</h3>
+        
+        <p style="font-size: 1.1rem; line-height: 1.4;">{{ session('error') }}</p>
+
+        <button onclick="this.closest('.favorite-limit-popup').remove()" style="
+            background-color: #c62828; 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        " onmouseover="this.style.backgroundColor='#d32f2f'" onmouseout="this.style.backgroundColor='#c62828'">
+            Close
+        </button>
     </div>
 @endif
 
@@ -89,6 +161,10 @@
           <a href="{{ route('admin.users.index') }}" 
             class="block px-4 py-2 rounded hover:bg-slate-100">
             User Management
+          </a>
+          <a href="{{ route('admin.activity.index') }}" 
+            class="block px-4 py-2 rounded hover:bg-slate-100">
+            Activity Log
           </a>
         @endif
       @endauth

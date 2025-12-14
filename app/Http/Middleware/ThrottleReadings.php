@@ -17,23 +17,31 @@ class ThrottleReadings
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            return $next($request);
+        $request->session()->flash('book_view_count', 'Unlimited'); 
+        return $next($request);
         }
 
-        $key = 'guest-read-throttle:' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 60; 
+        $key = 'guest-book-views:' . $request->ip();
+        $maxViews = 5; 
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
+        $currentViews = RateLimiter::attempts($key);
+        $projectedViews = $currentViews + 1; 
+
+        if ($projectedViews > $maxViews) {
+
+            RateLimiter::hit($key); 
             
-            return response()->view('auth.login', [
-                'message' => "You have exceeded the maximum of {$maxAttempts} book views per hour. Please log in to continue reading.",
-                'seconds' => $seconds,
-            ], 429);
+            return back()->with([
+                'throttle_error_message' => "You have viewed {$maxViews} books. Please log in to view more details.",
+                'limit_reached' => true,
+                'book_view_count' => $currentViews 
+            ]);
         }
-
+        
         RateLimiter::hit($key);
+        
+        $newViews = RateLimiter::attempts($key);
+        $request->session()->flash('book_view_count', $newViews);
         return $next($request);
     }
 }

@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session('book_view_count') && session('book_view_count') !== 'Unlimited')
+    <div class="view-counter" style="margin: 10px; padding: 5px; background-color: #e0f7fa; border: 1px solid #b2ebf2;">
+        Books Viewed: 
+        <strong>{{ session('book_view_count') }}</strong> / 5
+    </div>
+@elseif(session('book_view_count') === 'Unlimited')
+    <div class="view-counter" style="margin: 10px; padding: 5px; background-color: #e8f5e9; border: 1px solid #c8e6c9;">
+        Books Viewed: Unlimited (Logged In)
+    </div>
+@endif
   <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
     <div class="flex gap-6">
       <div class="w-1/3">
