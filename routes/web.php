@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cookie;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Cookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,15 @@ use Illuminate\Support\Facades\Cookie;
 */
 
 Route::get('/locale/{locale}', function (string $locale) {
+    // minimal: terima apapun, tapi kita pakai hanya en/id
     $locale = strtolower($locale);
-
-    if (!in_array($locale, ['en', 'id'], true)) {
+    if ($locale !== 'en' && $locale !== 'id') {
         $locale = 'en';
     }
 
     Cookie::queue('locale', $locale, 60 * 24 * 365);
-
     return redirect()->back();
 })->name('locale.switch');
-
 
 Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -37,7 +36,7 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); 
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,22 +53,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('books', BookAdminController::class);
 
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); 
+    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store');
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 });
-
-Route::get('/locale/{locale}', function (string $locale) {
-    $locale = strtolower($locale);
-
-    if (!in_array($locale, ['en', 'id'], true)) {
-        $locale = 'en';
-    }
-
-    session(['locale' => $locale]);
-
-    return redirect()->back();
-})->name('locale.switch');
-
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');

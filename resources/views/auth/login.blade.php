@@ -5,7 +5,7 @@
     <div class="w-full max-w-md bg-white shadow-md rounded-lg p-8">
 
         <h2 class="text-2xl font-bold text-center mb-6">
-            {{ __('ui.sign_in') }}
+            {{ __('sign_in') }}
         </h2>
 
         @if (session('status'))
@@ -17,10 +17,9 @@
         <form method="POST" action="{{ route('login') }}" class="space-y-4">
             @csrf
 
-            {{-- Email --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700">
-                    {{ __('ui.email') }}
+                    {{ __('email') }}
                 </label>
                 <input
                     type="email"
@@ -35,10 +34,9 @@
                 @enderror
             </div>
 
-            {{-- Password --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700">
-                    Password
+                    {{ __('password') }}
                 </label>
                 <input
                     type="password"
@@ -51,38 +49,33 @@
                 @enderror
             </div>
 
-            {{-- Remember --}}
             <div class="flex items-center">
                 <input type="checkbox" name="remember" class="mr-2">
-                <span class="text-sm text-gray-600">Remember me</span>
+                <span class="text-sm text-gray-600">{{ __('remember_me') }}</span>
             </div>
 
-            {{-- Submit --}}
             <div>
-                <button
-                    type="submit"
-                    class="w-full bg-slate-800 text-white py-2 rounded hover:bg-slate-900 transition"
-                >
-                    {{ __('ui.sign_in') }}
+                <button type="submit"
+                    class="w-full bg-slate-800 text-white py-2 rounded hover:bg-slate-900 transition">
+                    {{ __('sign_in') }}
                 </button>
             </div>
         </form>
 
-        {{-- Extra Links --}}
         <div class="flex flex-col items-center justify-center mt-6 space-y-2">
             <div>
                 <span class="text-sm text-gray-600">
-                    {{ __('ui.dont_have_account') }}
+                    {{ __('dont_have_account') }}
                 </span>
                 <a href="{{ route('register') }}"
                    class="ml-2 text-sm text-indigo-600 hover:text-indigo-900 font-semibold">
-                    {{ __('ui.register_here') }}
+                    {{ __('register_here') }}
                 </a>
             </div>
 
             <a href="{{ url('/') }}"
                class="text-sm text-gray-600 hover:text-gray-900 font-semibold">
-                {{ __('ui.back_to_home') }}
+                {{ __('back_to_home') }}
             </a>
         </div>
     </div>

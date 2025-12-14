@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,12 +15,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $locale = session('locale', config('app.locale', 'en'));
-
-        if (!in_array($locale, ['en', 'id'], true)) {
-            $locale = config('app.fallback_locale', 'en');
-        }
-
-        App::setLocale($locale);
+        App::setLocale(Cookie::get('locale', 'en'));
     }
 }
