@@ -58,5 +58,6 @@ protected $routeMiddleware = [
     'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
     'can' => \Illuminate\Auth\Middleware\Authorize::class,
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
+    'admin.limit' => \App\Http\Middleware\AdminSessionLimit::class,
 ];
 }

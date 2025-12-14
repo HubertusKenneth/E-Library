@@ -10,6 +10,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\LogActivity;
+use App\Http\Middleware\ThrottleReadings;
+use App\Http\Middleware\FavoriteLimit;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,7 @@ Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+Route::get('/books/{book}', [BookController::class, 'show']) ->middleware(ThrottleReadings::class)->name('books.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,7 +37,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/books/{book}/favorite', [FavoriteController::class, 'toggle'])->name('books.favorite');
+    Route::post('/books/{book}/favorite', [FavoriteController::class, 'toggle'])->middleware(FavoriteLimit::class)->name('books.favorite');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 });
 

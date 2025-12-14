@@ -11,6 +11,20 @@
   <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body class="bg-gray-100">
+  @if (session()->has('error'))
+    <div style="
+        background-color: #f8d7da; 
+        color: #721c24; 
+        border: 1px solid #f5c6cb; 
+        padding: 15px; 
+        margin-bottom: 20px;
+        text-align: center;
+    ">
+        {{ session('error') }}
+    </div>
+@endif
+
+
 <div x-data="{ sidebarOpen: true, profileOpen: false }" class="flex min-h-screen">
 
   <aside 
