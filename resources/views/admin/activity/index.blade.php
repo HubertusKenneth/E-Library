@@ -7,15 +7,6 @@
             font-weight: bold; 
             margin-bottom: 5px; 
         ">Authentication Activity Log</h2>
-        
-        <p class="text-muted" style="
-            font-size: 1.1rem; 
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee; 
-        ">
-            Viewing the latest authentication attempts (Login, Logout, Register) recorded by your LogActivity middleware.
-        </p>
     
         @if (empty($activityLogs))
             <div class="alert alert-warning">
