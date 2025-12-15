@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    /**
-     * Create session data for authenticated user
-     */
+
     public function createSession(Request $request)
     {
         if (!auth()->check()) {
@@ -50,7 +48,7 @@ class SessionController extends Controller
             'message' => 'User session deleted successfully'
         ]);
     }
-    
+
     public function flashSession(Request $request)
     {
         $request->session()->flash(
