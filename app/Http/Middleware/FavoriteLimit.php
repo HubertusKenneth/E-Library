@@ -18,22 +18,28 @@ class FavoriteLimit
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            
-            $max_favorites = 5; 
+            $user = auth()->user();
+            $max_favorites = 5;
 
-            $favorite_count = DB::table('favorites')
-                ->where('user_id', auth()->id())
-                ->count(); 
-            
-            Log::info('FavoriteLimit Check', [
-                'count' => $favorite_count, 
-                'user' => auth()->id()
-            ]);
+            $book = $request->route('book');
 
+            if (!$book || !isset($book->id)) {
+                return $next($request);
+            }
+
+            $is_already_favorited = $user->favorites()->where('book_id', $book->id)->exists();
+
+            if ($is_already_favorited) {
+                Log::info('FavoriteLimit: Unfavorite action detected (already favorited), skipping limit check.', ['user' => $user->id, 'book_id' => $book->id]);
+                return $next($request);
+            }
+
+            $favorite_count = $user->favorites()->count();
+            
             if ($favorite_count >= $max_favorites) {
-                Log::warning('FavoriteLimit Blocked Request: Limit Reached!'); 
+                Log::warning('FavoriteLimit Blocked Request: Limit Reached!');
                 
-                return back()->with('error', "You have reached your limit of {$max_favorites} favorited books. Please remove one to add another.");
+                return back()->with('favorite_limit_error', "You have reached your limit of {$max_favorites} favorited books. Please remove one to add another.");
             }
         }
         return $next($request);

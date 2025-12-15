@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
-  <h2 class="text-xl font-semibold mb-4">My Favorites</h2>
+<div class="flex items-center mb-4">
+    <h2 class="text-xl font-semibold mr-2">My Favorites</h2>
+    
+    @if(isset($favoriteCount) && isset($maxFavorites))
+      <span class="text-lg font-medium text-gray-700">
+        ({{ $favoriteCount }}/{{ $maxFavorites }})
+      </span>
+    @endif
+</div>
+
   <div class="grid md:grid-cols-3 gap-6">
     @forelse($books as $book)
       <div class="bg-white p-4 rounded shadow">

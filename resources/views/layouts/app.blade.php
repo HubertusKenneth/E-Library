@@ -59,12 +59,12 @@
         </button>
     </div>
 @endif
-  @if (session('error'))
+@if (session('favorite_limit_error'))
     <div class="favorite-limit-popup" style="
         position: fixed; 
         top: 25%; 
         left: 55%; 
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); 
         background-color: #ffebee; 
         color: #b71c1c; 
         border: 2px solid #ef9a9a; 
@@ -78,7 +78,7 @@
     ">
         <h3 style="margin-top: 0; font-size: 1.5rem;">Favorite Limit Reached</h3>
         
-        <p style="font-size: 1.1rem; line-height: 1.4;">{{ session('error') }}</p>
+        <p style="font-size: 1.1rem; line-height: 1.4;">{{ session('favorite_limit_error') }}</p>
 
         <button onclick="this.closest('.favorite-limit-popup').remove()" style="
             background-color: #c62828; 
@@ -92,6 +92,42 @@
             transition: background-color 0.2s;
         " onmouseover="this.style.backgroundColor='#d32f2f'" onmouseout="this.style.backgroundColor='#c62828'">
             Close
+        </button>
+    </div>
+@endif
+@if (session('favorite_status'))
+    <div class="favorite-success-popup" style="
+        position: fixed; 
+        top: 25%; 
+        left: 55%; 
+        transform: translate(-50%, -50%); 
+        background-color: #e8f5e9; 
+        color: #1b5e20; 
+        border: 2px solid #a5d6a7; 
+        border-radius: 10px; 
+        padding: 30px; 
+        z-index: 9999; 
+        box-shadow: 0 6px 12px rgba(0,0,0,.3);
+        text-align: center;
+        width: 80%;
+        max-width: 450px;
+    ">
+        <h3 style="margin-top: 0; font-size: 1.5rem;">Success</h3>
+        
+        <p style="font-size: 1.1rem; line-height: 1.4;">{{ session('favorite_status') }}</p>
+
+        <button onclick="this.closest('.favorite-success-popup').remove()" style="
+            background-color: #2e7d32; 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        " onmouseover="this.style.backgroundColor='#388e3c'" onmouseout="this.style.backgroundColor='#2e7d32'">
+            Dismiss
         </button>
     </div>
 @endif

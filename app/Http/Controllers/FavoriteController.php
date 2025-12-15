@@ -17,16 +17,24 @@ class FavoriteController extends Controller
         $user = auth()->user();
         if ($user->favorites()->where('book_id', $book->id)->exists()) {
             $user->favorites()->detach($book->id);
-            return back()->with('success','Removed from favorites');
+            return back()->with('favorite_status','Removed from favorites'); 
         } else {
             $user->favorites()->attach($book->id);
-            return back()->with('success','Added to favorites');
+            return back()->with('favorite_status','Added to favorites');
         }
     }
 
+
     public function index()
     {
-        $books = auth()->user()->favorites()->paginate(9);
-        return view('favorites.index', compact('books'));
+        $user = auth()->user();
+        
+        $favoriteCount = $user->favorites()->count(); 
+        
+        $maxFavorites = 5; 
+
+        $books = $user->favorites()->paginate(9);
+        
+        return view('favorites.index', compact('books', 'favoriteCount', 'maxFavorites'));
     }
 }
