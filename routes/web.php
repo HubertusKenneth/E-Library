@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cookie;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
@@ -17,6 +19,16 @@ use App\Http\Controllers\SessionController;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/locale/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'id'])) {
+        abort(400);
+    }
+
+    Cookie::queue('locale', $locale, 60 * 24 * 365);
+
+    return redirect()->back();
+})->name('locale.switch');
 
 Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -43,7 +55,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('books', BookAdminController::class);
 
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store'); // ✅ route untuk tambah admin
+    Route::post('/users', [UserAdminController::class, 'store'])->name('users.store');
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 });
 

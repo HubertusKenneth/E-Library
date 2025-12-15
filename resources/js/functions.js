@@ -4,7 +4,9 @@
         const modalText = document.getElementById('modalText');
 
         form.action = `/admin/users/${userId}`;
-        modalText.textContent = `Are you sure you want to delete user "${userName}"?`;
+        modalText.textContent =
+        (window.i18n?.deleteUserConfirm || `Are you sure you want to delete user "__NAME__"?`)
+            .replace('__NAME__', userName);
         modal.classList.remove('hidden');
     }
 

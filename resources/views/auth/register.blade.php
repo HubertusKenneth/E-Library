@@ -1,122 +1,97 @@
-<x-guest-layout>
-    <div class="flex justify-center mt-6">
-        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-    </div>
+@extends('layouts.app')
 
-    <form method="POST" action="{{ route('register') }}" novalidate>
-        @csrf
+@section('content')
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md bg-white shadow-md rounded-lg p-8">
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full"
-                type="text"
-                name="name"
-                :value="old('name')"
-                required
-                autofocus
-                autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2 text-red-600" />
-        </div>
+        <h2 class="text-2xl font-bold text-center mb-6">
+            {{ __('register_here') }}
+        </h2>
 
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full"
-                type="text"
-                name="email"
-                :value="old('email')"
-                required
-                autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600" />
-        </div>
+        <form method="POST" action="{{ route('register') }}" class="space-y-4">
+            @csrf
 
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <div class="relative">
-                <x-text-input id="password" class="block mt-1 w-full pr-10"
+            <div>
+                <label class="block text-sm font-medium text-gray-700">
+                    {{ __('name') }}
+                </label>
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ old('name') }}"
+                    required
+                    autofocus
+                    class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                >
+                @error('name')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">
+                    {{ __('email') }}
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    required
+                    class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                >
+                @error('email')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">
+                    {{ __('password') }}
+                </label>
+                <input
                     type="password"
                     name="password"
                     required
-                    autocomplete="new-password" />
-
-                <button type="button" id="togglePassword"
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none">
-                    <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.98 8.223a10.477 10.477 0 00-.716 3.777 10.477 10.477 0 00.716 3.777m16.04-7.554a10.477 10.477 0 01.716 3.777 10.477 10.477 0 01-.716 3.777M6.228 6.228a10.45 10.45 0 0111.544 0m-11.544 0L4.5 4.5m13.272 1.728L19.5 4.5m-1.728 1.728L4.5 19.5m0 0l1.728-1.728m0 0a10.45 10.45 0 0011.544 0m-11.544 0A10.45 10.45 0 014.5 19.5z" />
-                    </svg>
-
-                    <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-5 h-5 hidden">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                </button>
+                    class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                >
+                @error('password')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            @php
-                $passwordErrors = collect($errors->get('password'))
-                    ->reject(fn($msg) => str_contains($msg, 'confirmation does not match'))
-                    ->all();
-            @endphp
-            <x-input-error :messages="$passwordErrors" class="mt-2 text-red-600" />
-        </div>
-
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <div class="relative">
-                <x-text-input id="password_confirmation" class="block mt-1 w-full pr-10"
+            <div>
+                <label class="block text-sm font-medium text-gray-700">
+                    {{ __('confirm_password') }}
+                </label>
+                <input
                     type="password"
                     name="password_confirmation"
-                    required autocomplete="new-password" />
-
-                <button type="button" id="toggleConfirmPassword"
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none">
-                    <svg id="eyeClosedConfirm" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.98 8.223a10.477 10.477 0 00-.716 3.777 10.477 10.477 0 00.716 3.777m16.04-7.554a10.477 10.477 0 01.716 3.777 10.477 10.477 0 01-.716 3.777M6.228 6.228a10.45 10.45 0 0111.544 0m-11.544 0L4.5 4.5m13.272 1.728L19.5 4.5m-1.728 1.728L4.5 19.5m0 0l1.728-1.728m0 0a10.45 10.45 0 0011.544 0m-11.544 0A10.45 10.45 0 014.5 19.5z" />
-                    </svg>
-
-                    <svg id="eyeOpenConfirm" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-5 h-5 hidden">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                </button>
+                    required
+                    class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                >
             </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-600" />
-            @if ($errors->has('password') && str_contains($errors->first('password'), 'confirmation does not match'))
-                <p class="mt-2 text-sm text-red-600">The password confirmation does not match.</p>
-            @endif
-        </div>
+            <div>
+                <button type="submit"
+                    class="w-full bg-slate-800 text-white py-2 rounded hover:bg-slate-900 transition">
+                    {{ __('add') }}
+                </button>
+            </div>
+        </form>
 
-        <!-- BUTTONS -->
-        <div class="flex justify-center mt-6">
-            <x-primary-button>{{ __('Register') }}</x-primary-button>
-        </div>
-
-        <div class="flex justify-center mt-2">
-            <a href="{{ route('login') }}" class="text-sm text-indigo-600 hover:text-indigo-900 font-semibold underline">
-                Already registered?
+        <div class="flex justify-center mt-4">
+            <a href="{{ route('login') }}"
+               class="text-sm text-indigo-600 hover:text-indigo-900 font-semibold underline">
+                {{ __('already_registered') }}
             </a>
         </div>
 
         <div class="flex justify-center mt-6">
-            <a href="{{ url('/') }}" class="text-sm text-gray-600 hover:text-gray-900 font-semibold">
-                Back to Home
+            <a href="{{ url('/') }}"
+               class="text-sm text-gray-600 hover:text-gray-900 font-semibold">
+                {{ __('back_to_home') }}
             </a>
         </div>
-    </form>
-
-
-</x-guest-layout>
+    </div>
+</div>
+@endsection
