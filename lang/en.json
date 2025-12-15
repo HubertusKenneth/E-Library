@@ -94,5 +94,10 @@
   "user_features_2": "View detailed book information.",
   "user_features_3": "Add and manage your favorite books.",
 
-  "view_books": ""
+  "view_books": "Lihat Buku",
+  "add_to_favorite": "Add to Favorite",
+  "view_details": "View Detail",
+  "search_placeholder": "Search",
+
+  "sign_out": "Sign Out"
 }

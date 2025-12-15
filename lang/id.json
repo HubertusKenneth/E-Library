@@ -88,9 +88,15 @@
   "Reset Password": "Reset Kata Sandi",
   "Save": "Simpan",
   "Update Password": "Perbarui Kata Sandi",
+  
   "user_features": "Fitur Pengguna",
   "user_features_1": "Jelajah dan cari buku.",
   "user_features_2": "Lihat detail informasi buku.",
-  "user_features_3": "Tambah dan kelola buku favorit."
+  "user_features_3": "Tambah dan kelola buku favorit.",
+
+  "view_books": "Lihat Buku",
+  "add_to_favorite": "Tambah Favorit",
+  "view_details": "Lihat Detail",
+  "search_placeholder": "Cari"
 
 }
