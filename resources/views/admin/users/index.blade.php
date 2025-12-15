@@ -33,7 +33,7 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 border-b text-left w-1/12">#</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('name') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('Name') }}</th>
                     <th class="py-2 px-4 border-b text-left w-3/12">{{ __('email') }}</th>
                     <th class="py-2 px-4 border-b text-left w-2/12">{{ __('role') }}</th>
                     <th class="py-2 px-4 border-b text-left w-2/12">{{ __('registered') }}</th>
@@ -74,7 +74,7 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 border-b text-left w-1/12">#</th>
-                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('name') }}</th>
+                    <th class="py-2 px-4 border-b text-left w-2/12">{{ __('Name') }}</th>
                     <th class="py-2 px-4 border-b text-left w-3/12">{{ __('email') }}</th>
                     <th class="py-2 px-4 border-b text-left w-2/12">{{ __('role') }}</th>
                     <th class="py-2 px-4 border-b text-left w-2/12">{{ __('registered') }}</th>
