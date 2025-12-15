@@ -73,6 +73,7 @@
   "description": "Description",
   "cancel": "Cancel",
   "submit": "Submit",
+  "registered_users": "Registered Users",
 
   "user_guide": "User Guide",
   "user_guide_1": "Browse the book list without logging in",
