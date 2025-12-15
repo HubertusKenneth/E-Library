@@ -62,12 +62,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/session/create', [SessionController::class, 'createSession']);
-    Route::get('/session/read', [SessionController::class, 'readSession']);
-    Route::get('/session/delete', [SessionController::class, 'deleteSession']);
-    Route::get('/session/flash', [SessionController::class, 'flashSession']);
-});
-
-
 require __DIR__ . '/auth.php';
