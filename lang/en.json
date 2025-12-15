@@ -55,6 +55,23 @@
   "confirm_delete_book": "Are you sure you want to delete this book?",
   "confirm_delete_user": "Are you sure you want to delete this user?",
 
+  "user_guide": "User Guide",
+  "user_guide_1": "Browse the book list without logging in",
+  "user_guide_2": "View categories and book details",
+  "user_guide_3": "Sign in to access favorites",
+
+  "available_features": "Available Features",
+  "view_and_explore_books": "View and explore books",
+
+  "favorite_books": "Favorite Books",
+
+  "sign_in": "Sign In",
+  "email": "Email",
+  "password": "Password",
+  "remember_me": "Remember me",
+  "dont_have_account": "Don't have an account?",
+  "register_here": "Register here",
+
   "Are you sure you want to delete your account?": "Are you sure you want to delete your account?",
   "Cancel": "Cancel",
   "Confirm": "Confirm",
@@ -62,13 +79,10 @@
   "Current Password": "Current Password",
   "Dashboard": "Dashboard",
   "Delete Account": "Delete Account",
-  "Email": "Email",
   "Email Password Reset Link": "Email Password Reset Link",
   "Log Out": "Log Out",
   "Name": "Name",
   "New Password": "New Password",
-  "Password": "Password",
-  "Profile": "Profile",
   "Profile Information": "Profile Information",
   "Resend Verification Email": "Resend Verification Email",
   "Reset Password": "Reset Password",
