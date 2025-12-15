@@ -87,5 +87,10 @@
   "Resend Verification Email": "Kirim Ulang Email Verifikasi",
   "Reset Password": "Reset Kata Sandi",
   "Save": "Simpan",
-  "Update Password": "Perbarui Kata Sandi"
+  "Update Password": "Perbarui Kata Sandi",
+  "user_features": "Fitur Pengguna",
+  "user_features_1": "Jelajah dan cari buku.",
+  "user_features_2": "Lihat detail informasi buku.",
+  "user_features_3": "Tambah dan kelola buku favorit."
+
 }

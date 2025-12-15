@@ -87,5 +87,12 @@
   "Resend Verification Email": "Resend Verification Email",
   "Reset Password": "Reset Password",
   "Save": "Save",
-  "Update Password": "Update Password"
+  "Update Password": "Update Password",
+
+  "user_features": "User Features",
+  "user_features_1": "Browse and search for books.",
+  "user_features_2": "View detailed book information.",
+  "user_features_3": "Add and manage your favorite books.",
+
+  "view_books": ""
 }
