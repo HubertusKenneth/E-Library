@@ -86,6 +86,7 @@
         <li>Browse and search for books.</li>
         <li>View detailed book information.</li>
         <li>Add and manage your favorite books.</li>
+        <li>Download PDF versions of books (if available).</li>
       </ul>
     @elseif(Auth::user()->role == 'admin')
       <h3 class="text-lg font-bold mb-3">Admin Panel Overview</h3>

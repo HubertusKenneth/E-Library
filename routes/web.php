@@ -26,6 +26,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class, 'show']) ->middleware(ThrottleReadings::class)->name('books.show');
 
+Route::middleware('auth')->get('/books/{book}/pdf',
+    [BookController::class, 'downloadPdf']
+)->name('books.pdf');
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); 
@@ -55,7 +61,5 @@ Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('ca
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware(LogActivity::class);
-
-
-
+    
 require __DIR__ . '/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -87,6 +88,7 @@ class BookController extends Controller
             'genre' => 'required|string|max:255',
             'description' => 'nullable|string',
             'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'pdf' => 'nullable|mimes:pdf|max:10240', // 10MB
         ]);
 
         $data = $request->only([
@@ -95,14 +97,17 @@ class BookController extends Controller
             'publisher',
             'year',
             'genre',
-            'description'
+            'description',
         ]);
 
-        if ($request->hasFile('cover')) {
-            $file = $request->file('cover');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('covers'), $filename);
-            $data['cover'] = $filename;
+        // PDF
+        if ($request->hasFile('pdf')) {
+            $pdf = $request->file('pdf');
+            $pdfName = time() . '_' . $pdf->getClientOriginalName();
+            $pdfPath = $pdf->storeAs('pdfs', $pdfName, 'public');
+
+            $data['pdf_path'] = $pdfPath;
+            $data['pdf_name'] = $pdfName;
         }
 
         Book::create($data);
@@ -111,7 +116,17 @@ class BookController extends Controller
             ->with('success', 'Book added successfully!');
     }
 
-    // public function edit(string $id) {}
+    public function downloadPdf(Book $book)
+    {
+        if (!$book->pdf_path) {
+            abort(404);
+        }
+
+        return Storage::disk('public')->download(
+            $book->pdf_path,
+            $book->pdf_name
+        );
+    }
 
     public function edit(Book $book)
     {
