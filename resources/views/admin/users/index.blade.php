@@ -14,7 +14,6 @@
         </div>
     @endif
 
-    {{-- Admin Section --}}
     <div class="flex justify-between items-center mb-3 mt-6 border-b pb-2">
         <h2 class="text-2xl font-semibold text-gray-700">Admin Accounts</h2>
 
@@ -30,7 +29,6 @@
         </button>
     </div>
 
-    {{-- Admin Table --}}
     <div class="bg-white shadow rounded-lg overflow-hidden mb-10">
         <table class="min-w-full border border-gray-200">
             <thead class="bg-gray-100">
@@ -55,7 +53,7 @@
                             @if (auth()->id() !== $user->id)
                                 <button 
                                     class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-                                    onclick="openModal({{ $user->id }}, '{{ $user->name }}')">
+                                    onclick="openModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->role }}')">
                                     Delete
                                 </button>
                             @else
@@ -98,7 +96,7 @@
                             @if (auth()->id() !== $user->id)
                                 <button 
                                     class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-                                    onclick="openModal({{ $user->id }}, '{{ $user->name }}')">
+                                    onclick="openModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->role }}')">
                                     Delete
                                 </button>
                             @else
@@ -115,9 +113,8 @@
         </table>
     </div>
 </div>
-
-<div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full">
         <h2 class="text-xl font-semibold mb-4 text-gray-800">Delete Confirmation</h2>
         <p class="text-gray-600 mb-6" id="modalText"></p>
 
@@ -137,14 +134,14 @@
     </div>
 </div>
 
-<div id="addAdminModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+<div id="addAdminModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-md">
         <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Admin</h2>
 
         <form method="POST" action="{{ route('admin.users.store') }}" novalidate id="addAdminForm">
             @csrf
             <input type="hidden" name="role" value="admin">
-            {{-- Name --}}
+            
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 mb-1">Name</label>
                 <input type="text" id="name" name="name"
@@ -155,7 +152,6 @@
                 @enderror
             </div>
 
-            {{-- Email --}}
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 mb-1">Email</label>
                 <input type="email" id="email" name="email"
@@ -166,17 +162,13 @@
                 @enderror
             </div>
 
-            {{-- Password --}}
             <div class="mb-4">
-                <label for="password" class="block text-gray-700 mb-1">Password (optional)</label>
+                <label for="password" class="block text-gray-700 mb-1">Password</label>
                 <input type="password" id="password" name="password"
-                    class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200">
+                    class="w-full border-gray-300 rounded p-2 focus:ring focus:ring-blue-200" required>
                 @error('password')
                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                 @enderror
-                <p class="text-sm text-gray-500 mt-1">
-                    If left empty, default password will be <strong>admin123</strong>.
-                </p>
             </div>
 
             <div class="flex justify-end space-x-3 mt-6">
@@ -188,7 +180,6 @@
         </form>
     </div>
 </div>
-
 <script>
     const hasErrors = @json($errors->any());
 </script>

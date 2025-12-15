@@ -21,7 +21,7 @@ class UserAdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'nullable|string|min:5',
+            'password' => 'required|string|min:5',
         ]);
 
         $user = new User();
@@ -43,9 +43,11 @@ class UserAdminController extends Controller
         }
 
         $user = User::findOrFail($id);
+        $role = ucfirst($user->role); 
+        
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'User deleted successfully.');
+            ->with('success', $role . ' deleted successfully.');
     }
 }

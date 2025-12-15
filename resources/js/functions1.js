@@ -1,10 +1,12 @@
-function openModal(userId, userName) {
+function openModal(userId, userName, userRole) {
     const modal = document.getElementById('deleteModal');
     const form = document.getElementById('deleteForm');
     const modalText = document.getElementById('modalText');
+    
+    const displayRole = userRole.charAt(0).toUpperCase() + userRole.slice(1);
 
     form.action = `/admin/users/${userId}`;
-    modalText.textContent = `Are you sure you want to delete user "${userName}"?`;
+    modalText.textContent = `Are you sure you want to delete ${displayRole} "${userName}"?`;
     modal.classList.remove('hidden');
 }
 
