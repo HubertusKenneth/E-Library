@@ -18,7 +18,10 @@ class Book extends Model
         'genre',
         'description',
         'cover',
+        'pdf_path',
+        'pdf_name',
     ];
+
 
     /**
      * Relasi: buku bisa difavoritkan oleh banyak user

@@ -82,6 +82,10 @@
         <li>{{ __('user_features_1') }}</li>
         <li>{{ __('user_features_2') }}</li>
         <li>{{ __('user_features_3') }}</li>
+        <li>Browse and search for books.</li>
+        <li>View detailed book information.</li>
+        <li>Add and manage your favorite books.</li>
+        <li>Download PDF versions of books (if available).</li>
       </ul>
     @elseif(Auth::user()->role == 'admin')
       <h3 class="text-lg font-bold mb-3">{{ __('admin_panel_overview') }}</h3>
