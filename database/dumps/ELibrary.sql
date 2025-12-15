@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 08, 2025 at 04:00 PM
+-- Generation Time: Dec 15, 2025 at 03:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -37,28 +37,41 @@ CREATE TABLE `books` (
   `description` text DEFAULT NULL,
   `cover` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `pdf_path` varchar(255) DEFAULT NULL,
+  `pdf_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `title`, `author`, `publisher`, `year`, `genre`, `description`, `cover`, `created_at`, `updated_at`) VALUES
-(1, 'Avengers: The Ultimate Guide', 'DK Publishing', 'Dorling Kindersley', '2012', 'Superhero', 'A visual guide to the Avengers team and its members.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(2, 'Iron Man: Extremis', 'Warren Ellis', 'Marvel Comics', '2005', 'Comic', 'The story arc that redefined Iron Man for the modern age.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(3, 'Captain America: Winter Soldier', 'Ed Brubaker', 'Marvel Comics', '2006', 'Comic', 'Captain America uncovers the truth about Bucky Barnes.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(4, 'Thor: God of Thunder – The God Butcher', 'Jason Aaron', 'Marvel Comics', '2013', 'Comic', 'Thor faces the terrifying villain Gorr the God Butcher.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(5, 'The Infinity Gauntlet', 'Jim Starlin', 'Marvel Comics', '1991', 'Comic', 'Thanos wields the Infinity Gauntlet to reshape the universe.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(6, 'Avengers: Disassembled', 'Brian Michael Bendis', 'Marvel Comics', '2004', 'Comic', 'The Avengers face their darkest hour as the team falls apart.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(7, 'Hawkeye: My Life as a Weapon', 'Matt Fraction', 'Marvel Comics', '2012', 'Comic', 'Follow Hawkeye’s solo adventures outside the Avengers.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(8, 'Black Widow: Forever Red', 'Margaret Stohl', 'Marvel Press', '2015', 'Novel', 'A YA novel exploring Black Widow’s past and her new ally.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(9, 'Doctor Strange: The Oath', 'Brian K. Vaughan', 'Marvel Comics', '2007', 'Comic', 'Doctor Strange investigates a conspiracy against the medical world.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(10, 'Avengers vs. X-Men', 'Various', 'Marvel Comics', '2012', 'Comic', 'The Avengers and the X-Men clash over the fate of the Phoenix Force.', NULL, '2025-09-22 12:56:42', '2025-09-22 12:56:42'),
-(11, 'Gw Ganteng', 'Hubertus Kenneth Alfragisa', 'HKA', '2005', 'Love Yourself', 'Anjay', 'covers/DitDpSeg9t1EDE1kAq0zCUOFQeCrNx7BB11JEctB.jpg', '2025-09-23 08:57:36', '2025-09-23 08:57:36'),
-(12, 'Halo', 'Hubertus Kenneth Alfragisa', 'HKA', '2000', 'Love Yourself', '-', 'covers/zliMYSulKUsy5bXJDOjETkKaL6jvhYBTpjg49GWl.png', '2025-10-08 02:16:11', '2025-10-08 02:16:11'),
-(13, 'Hubertussssssss', 'Hubertus Kenneth Alfragisa', 'HKA', '2005', 'Love Yourself', 'Wow', 'covers/A2NBSbRXXIYLHDGQk0jOp2FfMP9jTQgW0UJ0G0Nb.png', '2025-10-08 02:25:52', '2025-10-08 02:25:52'),
-(14, 'Shinchan', 'Yoshito Usui', 'ComicsOne', '1990', 'Comedy', NULL, 'covers/adyIgaDMQk3hbvJtIPbPKPcZFRf10EVhmWS2NnYu.jpg', '2025-10-08 06:44:25', '2025-10-08 06:44:25');
+INSERT INTO `books` (`id`, `title`, `author`, `publisher`, `year`, `genre`, `description`, `cover`, `created_at`, `updated_at`, `pdf_path`, `pdf_name`) VALUES
+(20, 'Art in Focus', 'Jean Morman Unsworth', 'Glencoe/McGraw-Hill', '2000', 'Art', 'Art in focus: Aesthetics, criticism, history, studio.', 'covers/ArtInFocus_image.jpg', NULL, NULL, 'pdfs/ArtInFocus_Gene_A_Mittler.pdf', 'ArtInFocus_Gene_A_Mittler.pdf'),
+(21, 'Contemporary Painting', 'Suzanne Hudson', 'Thames & Hudson', '2021', 'Art', 'Renowned critic and art historian Suzanne Hudson offers an intelligent and original survey of the subject: a rigorous critical snapshot that brings together more than 250 renowned artists from around the world, whose ideas and aesthetics characterize the painting of our time.', 'covers/ContemporaryPainting_image.jpg', NULL, NULL, 'pdfs/ContemporaryPainting_Suzanne_Hudson.pdf', 'ContemporaryPainting_Suzanne_Hudson.pdf'),
+(22, 'Patterns', 'Drusilla Cole', 'Laurence King Publishing', '2009', 'Art', 'This stunning picture book chronicles one hundred years of classic patterns, featuring designs in a wide variety of styles, art movements, and countries of origin to give an overview of surface design from the beginning of the last century to the present day.', 'covers/Patterns_image.jpg', NULL, NULL, 'pdfs/Patterns_drusilla_cole.pdf', 'Patterns_drusilla_cole.pdf'),
+(23, 'Stages Of Rot', 'Linnea Sterte', 'Koguchi Press', '2017', 'Art', 'An alien desert comes to life around the body of a dying whale. Animals, insects, and ancient peoples scramble for its remains, making their homes among its bones, struggling through a millennia-long process of decay.', 'covers/StagesOfRot_image.jpg', NULL, NULL, 'pdfs/StagesOfRot_Linnea_Sterte.pdf', 'StagesOfRot_Linnea_Sterte.pdf'),
+(24, 'The Wrong Shoes', 'Tom Percival', 'Simon & Schuster Children\'s UK', '2025', 'Art', 'Will has the wrong shoes – he\'s always known it but doesn\'t know how to change it. Navigating the difficulties of home and school when you feel you stick out is tough, but finding confidence with the help and empathy of friends can be all you need to see the way.', 'covers/TheWrongShoes_image.jpg', NULL, NULL, 'pdfs/TheWrongShoes_Tom_Percival.pdf', 'TheWrongShoes_Tom_Percival.pdf'),
+(25, 'Disney\'s World', 'Leonard Mosley', 'Stein and Day', '1985', 'Biography', 'Draws an intimate portrait of the man whose imagination spawned a family of classic cartoon characters, a powerful film studio, and an entertainment empire.', 'covers/DisneysWorldABiography_image.jpg', NULL, NULL, 'pdfs/DisneysWorldABiography_LeonardMosley.pdf', 'DisneysWorldABiography_LeonardMosley.pdf'),
+(26, 'Gas Man', 'Colin Black', 'HarperCollins Publishers', '2022', 'Biography', 'Razor-sharp and forthright, Gas Man is a disarming and frequently hilarious account of life in one of the most fascinating and thrilling professions at medicine\'s frontline.', 'covers/GasMan_image.jpg', NULL, NULL, 'pdfs/GasMan_ColinBlack.pdf', 'GasMan_ColinBlack.pdf'),
+(27, 'Honourable Man My Life In The CIA', 'William Colby', 'Simon and Schuster', '1978', 'Biography', 'The veteran intelligence agent and former CIA director recalls the events, developments, and people of his career, describes the CIA\'s organization, workings, and procedures, and profiles famous and hazy world figures.', 'covers/HonourableManMyLifeInTheCIA_image.jpg', NULL, NULL, 'pdfs/HonourableManMyLifeInTheCIA_WilliamColby.pdf', 'HonourableManMyLifeInTheCIA_WilliamColby.pdf'),
+(28, 'Leap Year', 'Helen Russell', 'Hodder & Stoughton', '2017', 'Biography', 'How to make big decisions, be more resilient, and change your life for good. Having spent the last few years in Denmark uncovering the secrets of the happiest country in the world...', 'covers/LeapYear_image.jpg', NULL, NULL, 'pdfs/LeapYear_HelenRussell.pdf', 'LeapYear_HelenRussell.pdf'),
+(29, 'The Business Of Being Me', 'Issa Rae', 'Brilliance Publishing / Amazon Original Stories', '2025', 'Biography', 'In this funny and inspiring essay about ambition, persistence, self-discovery, and the thrilling—if unpredictable—business of creativity, Issa Rae charts her aspirational journey of finding her voice and shaping it into a groundbreaking career.', 'covers/TheBusinessOfBeingMe_image.jpg', NULL, NULL, 'pdfs/TheBusinessOfBeingMe_IssaRae.pdf', 'TheBusinessOfBeingMe_IssaRae.pdf'),
+(30, 'Christmas At Hogwarts', 'JK Rowling', 'Scholastic/Bloomsbury', '2024', 'Fantasy', 'With text from one of the most beloved moments in J.K. Rowling\'s bestselling original novel, Harry Potter and the Philosopher\'s Stone... this new illustrated book promises to be the perfect festive treat.', 'covers/ChristmasAtHogwarts_image.jpg', NULL, NULL, 'pdfs/ChristmasAtHogwarts_JK_Rowling.pdf', 'ChristmasAtHogwarts_JK_Rowling.pdf'),
+(31, 'Dragon Planet', 'Dan Wells', 'Audible Studios', '2019', 'Fantasy', 'Zero and Nyx are stranded on an unknown planet with no way to communicate, being chased by thieves, and with another storm bearing down on them.', 'covers/DragonPlanetCover.png', NULL, NULL, 'pdfs/DragonPlanet_DanWells.pdf', 'DragonPlanet_DanWells.pdf'),
+(32, 'Flammen Sturm', 'Juliette Cross', 'Dark Intense', '2025', 'Fantasy', 'Alles verschlingende Dark Romantasy ab 16 Jahren - Historische Fantasy trifft auf epische Romance im antiken Rom. (German: All-consuming Dark Romantasy from age 16 - Historical Fantasy meets epic Romance in ancient Rome).', 'covers/Flammensturm_image.jpg', NULL, NULL, 'pdfs/FlammenSturm_Juliette_Cross.pdf', 'FlammenSturm_Juliette_Cross.pdf'),
+(33, 'Hana Tara Hata', 'Tere Liye', 'Sabak Grip Nusantara', '2025', 'Fantasy', 'Tentang seorang pemilik kekuatan “membaca alam sekitar”. Tentang seorang ibu yang sangat menyayangi anaknya. Rasa sakit. Kehilangan. Pengorbanan. Kebencian. Memaafkan. Tumpah menjadi satu.', 'covers/HanaTaraHata_image.jpg', NULL, NULL, 'pdfs/HanaTaraHata_Tere_Liye.pdf', 'HanaTaraHata_Tere_Liye.pdf'),
+(34, 'Storm Signal', 'P L Matthews', 'Kindle', '2025', 'Fantasy', 'Skye\'s tech magic and Zephyra\'s wild air magic don\'t exactly blend... With the storm building—both magical and emotional—the sisters will have to figure out how to work together to clear Zephyra\'s name.', 'covers/StormSignal_image.jpg', NULL, NULL, 'pdfs/StormSignal_P_L_Matthews.pdf', 'StormSignal_P_L_Matthews.pdf'),
+(35, '1962The War That Wasnt', 'Shiv Kunal Verma', 'Aleph Book Company', '2016', 'History', 'In this definitive account of the conflict... Shiv Kunal Verma takes us on an uncomfortable journey through one of the most disastrous episodes of independent India\'s history.', 'covers/1962TheWarThatWasnt_image.jpg', NULL, NULL, 'pdfs/1962TheWarThatWasnt_ShivKunalVerma.pdf', '1962TheWarThatWasnt_ShivKunalVerma.pdf'),
+(36, 'Confessions Of An Actor', 'Laurence Olivier', 'Simon & Schuster', '1982', 'History', 'An autobiography by the English actor discusses his theatrical and film career and offers a candid account of his personal life, focusing on his relationship with actress Vivien Leigh.', 'covers/ConfessionsOfAnActor_image.jpg', NULL, NULL, 'pdfs/ConfessionsOfAnActor_LaurenceOlivier.pdf', 'ConfessionsOfAnActor_LaurenceOlivier.pdf'),
+(37, 'Democratic Ideals And Reality', 'Halford John Mackinder', 'Henry Holt and Co.', '1919', 'History', 'He argued that interior Asia and eastern Europe (the Heartland) were the geographic keys to world power; the role of Britain and the United States was to preserve a balance between the powers contending for control of this heartland.', 'covers/DemocraticIdealsAndReality_image.jpg', NULL, NULL, 'pdfs/DemocraticIdealsAndReality_HalfordJohnMackinder.pdf', 'DemocraticIdealsAndReality_HalfordJohnMackinder.pdf'),
+(38, 'Le Mariage', 'Dorothy West', 'Doubleday', '1995', 'History', 'In the 1950s, a girl from the black bourgeoisie in Martha\'s Vineyard announces her engagement to a white musician. The novel follows the impact this has on her family and the community around them.', 'covers/LeMariage_image.jpg', NULL, NULL, 'pdfs/LeMariage_DorothyWest.pdf', 'LeMariage_DorothyWest.pdf'),
+(39, 'The Egypt Code', 'Robert Bauval', 'Disinformation Company Limited', '2008', 'History', 'Robert Bauval... completes his groundbreaking investigation of astronomy as related to Egyptian monuments and related religious texts. The Egypt Code revisits the Pyramid Age and the Old Kingdom, proposing a vast skyground correlation for the MemphiteHeliopolis region.', 'covers/TheEgyptCode_image.jpg', NULL, NULL, 'pdfs/TheEgyptCode_RobertBauval.pdf', 'TheEgyptCode_RobertBauval.pdf'),
+(40, 'Everything Changes But You', 'Sarah Bennett', 'Boldwood Books Ltd.', '2025', 'Romance', 'The focus of this story is Issy and Liam. The relationship between these two is just the right mixture of everything happening to them alone as well as together. (A brand new dreamy seaside romance).', 'covers/EverythingChangesButYou_image.png', NULL, NULL, 'pdfs/EverythingChangesButYou_SarahBennett.pdf', 'EverythingChangesButYou_SarahBennett.pdf'),
+(41, 'Fake AChance On Me', 'Rebecca Chase', 'Kindle', '2025', 'Romance', 'Fake dating and intimacy lessons with the town\'s hottest, baddest rugby player to overcome my health issues? Bad idea. Catching feelings for him? A mistake that will shatter my heart.', 'covers/FakeAChanceOnMe_image.jpg', NULL, NULL, 'pdfs/FakeAChanceOnMe_RebeccaChase.pdf', 'FakeAChanceOnMe_RebeccaChase.pdf'),
+(42, 'Love PRN', 'Cadence Rush', 'Cadence Rush Books', '2025', 'Romance', 'Quinn will have to tackle her demons and the grim realities of the nursing profession if she has any hope of surviving her new career, and truly moving on from the horrors of her past.', 'covers/LovePRN_image.jpg', NULL, NULL, 'pdfs/LovePRN_CadenceRush.pdf', 'LovePRN_CadenceRush.pdf'),
+(43, 'The Number You Are Trying To Reach Is Not Reachable', 'Andara Kirana', 'Bukune', '2016', 'Romance', 'The Number You Are Trying to Reach is Not Reachable. (A fictional title with no further description available in the search snippets).', 'covers/TheNumberYouAreTryingToReachIsNotReachable_image.jpg', NULL, NULL, 'pdfs/TheNumberYouAreTryingToReachIsNotReachable_AndaraKirana.pdf', 'TheNumberYouAreTryingToReachIsNotReachable_AndaraKirana.pdf'),
+(44, 'Unlucky In Love', 'Kiva Hart', 'Abbix Publishing Company', '2025', 'Romance', 'Brooke must decide whether the life she built in New York is worth holding onto, or if returning to Cedar Valley and rekindling the love she left behind is the second chance she never knew she needed. (A Small Town Romance with a Little Bit of Thanksgiving Magic).', 'covers/UnluckyInLove_image.jpg', NULL, NULL, 'pdfs/UnluckyInLove_KivaHart.pdf', 'UnluckyInLove_KivaHart.pdf');
 
 -- --------------------------------------------------------
 
@@ -71,6 +84,16 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel-cache-guest-book-views:127.0.0.1', 'i:1;', 1765809236),
+('laravel-cache-guest-book-views:127.0.0.1:timer', 'i:1765809236;', 1765809236),
+('laravel-cache-guest-read-throttle:127.0.0.1', 'i:5;', 1765726993),
+('laravel-cache-guest-read-throttle:127.0.0.1:timer', 'i:1765726993;', 1765726993);
 
 -- --------------------------------------------------------
 
@@ -113,16 +136,6 @@ CREATE TABLE `favorites` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `favorites`
---
-
-INSERT INTO `favorites` (`id`, `user_id`, `book_id`, `created_at`, `updated_at`) VALUES
-(6, 2, 1, '2025-09-22 08:36:24', '2025-09-22 08:36:24'),
-(7, 2, 2, '2025-09-22 08:36:26', '2025-09-22 08:36:26'),
-(8, 2, 3, '2025-09-22 09:07:24', '2025-09-22 09:07:24'),
-(11, 1, 2, '2025-09-30 20:02:46', '2025-09-30 20:02:46');
 
 -- --------------------------------------------------------
 
@@ -182,7 +195,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2025_09_22_110241_create_books_table', 1),
 (5, '2025_09_22_110313_create_favorites_table', 1),
 (6, '2025_09_23_134654_add_role_to_users_table', 2),
-(7, '2025_10_08_100000_create_user_activities_table', 3);
+(7, '2025_10_08_100000_create_user_activities_table', 3),
+(8, '2025_12_15_005538_add_pdf_to_books_table', 4);
 
 -- --------------------------------------------------------
 
@@ -195,6 +209,13 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('hubertusk26@gmail.com', '$2y$12$rPquA4.vHBlyBJW6qkm61OdcbnCnYzloqKo.Dl2bESeMt8FteSUTK', '2025-12-15 12:33:02');
 
 -- --------------------------------------------------------
 
@@ -216,7 +237,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('asTz1wzlKseqEQfYIodMyk3oRIgdpiagFj66N4za', 3, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNWRkdXJZNFM3cnFqejVmbGRBOXRoZlVsWTRjNXBzWG5EV1J3S2prQiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29rcyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1759931991);
+('2XcNf41sfd2SUr9EmAZD31MqUMJEyUeexnsz8Kdi', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZksxU3FQT1R3N1RWVE1iaER3R1FheERDY2dWUEZ6SzNhYzNwT3U2NiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9hY3Rpdml0eT9wYWdlPTEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1765808611),
+('SKQzQWJbGfpYm9whAOLBk8VlUzJD67aSFtWQcGm6', 1, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVlpDZDd5SWhHUm9wb1hmUW5QUElodmdXUHRiQ1EyNmp0YUs1Y2F0WiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29rcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1765809240);
 
 -- --------------------------------------------------------
 
@@ -243,7 +265,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
 (1, 'Test01', 'test@test.com', NULL, '$2y$12$r2sA1QGAERzQ8Yh1QTsZU.yVsPcCI.J78pdcgy2xfBzDAQt7cWB6u', NULL, '2025-09-22 05:17:28', '2025-09-22 05:17:28', 'user'),
 (2, 'Kenn', 'hubertusk26@gmail.com', NULL, '$2y$12$2buWkdYn1GsLWC.vfAgNuuaZd0JOc8iv9EWjR/xCkFt.gdBLXbtSC', NULL, '2025-09-22 08:36:04', '2025-09-22 08:36:04', 'user'),
-(3, 'admin', 'admin@library.com', NULL, '$2y$12$KunmWfafjGUxphZpPDtxOuCTuswvEfsNhdsP3mAjq9iUfJkd0lATS', NULL, '2025-09-22 09:51:10', '2025-10-08 06:59:19', 'admin');
+(3, 'admin', 'admin@library.com', NULL, '$2y$12$KunmWfafjGUxphZpPDtxOuCTuswvEfsNhdsP3mAjq9iUfJkd0lATS', NULL, '2025-09-22 09:51:10', '2025-10-08 06:59:19', 'admin'),
+(5, 'fendy', 'fendy@gmail.com', NULL, '$2y$12$i3c9tzs0P4DxdXM5nQzTMOPYvCkYnz3QEIJkKbDSn2ko8czPIxbl2', NULL, '2025-12-15 13:08:58', '2025-12-15 13:08:58', 'user');
 
 -- --------------------------------------------------------
 
@@ -291,7 +314,8 @@ INSERT INTO `user_activities` (`id`, `user_id`, `action`, `model_type`, `model_i
 (19, 3, 'profile_update', 'App\\Models\\User', 3, 'Updated profile information', '{\"method\":\"PATCH\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/profile\",\"actual_method\":\"PATCH\"}', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', '2025-10-08 06:59:05', '2025-10-08 06:59:05'),
 (20, 3, 'profile_update', 'App\\Models\\User', 3, 'Updated profile information', '{\"method\":\"PATCH\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/profile\",\"actual_method\":\"PATCH\"}', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', '2025-10-08 06:59:08', '2025-10-08 06:59:08'),
 (21, 3, 'profile_update', 'App\\Models\\User', 3, 'Updated profile information', '{\"method\":\"PATCH\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/profile\",\"actual_method\":\"PATCH\"}', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', '2025-10-08 06:59:16', '2025-10-08 06:59:16'),
-(22, 3, 'profile_update', 'App\\Models\\User', 3, 'Updated profile information', '{\"method\":\"PATCH\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/profile\",\"actual_method\":\"PATCH\"}', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', '2025-10-08 06:59:19', '2025-10-08 06:59:19');
+(22, 3, 'profile_update', 'App\\Models\\User', 3, 'Updated profile information', '{\"method\":\"PATCH\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/profile\",\"actual_method\":\"PATCH\"}', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', '2025-10-08 06:59:19', '2025-10-08 06:59:19'),
+(23, 3, 'login', NULL, NULL, 'User logged in', '{\"method\":\"POST\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/login\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', '2025-10-08 07:01:18', '2025-10-08 07:01:18');
 
 --
 -- Indexes for dumped tables
@@ -387,7 +411,7 @@ ALTER TABLE `user_activities`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -399,7 +423,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -411,19 +435,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_activities`
 --
 ALTER TABLE `user_activities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

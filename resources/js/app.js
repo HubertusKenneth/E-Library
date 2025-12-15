@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const eyeOpen = document.getElementById('eyeOpen');
     const eyeClosed = document.getElementById('eyeClosed');
 
-    // supaya aman di halaman lain
     if (!passwordInput || !toggleButton) return;
 
     toggleButton.addEventListener('click', () => {
