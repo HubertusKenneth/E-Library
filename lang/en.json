@@ -113,7 +113,7 @@
   "user_features": "User Features",
   "user_features_1": "Browse and search for books.",
   "user_features_2": "View detailed book information.",
-  "user_features_3": "Add and manage your favorite books.",
+  "user_features_3": "Add and manage your favorite books (up to 5 books).",
 
   "admin_panel_overview":"Admin Panel Overview",
   "admin_overview_1":"Manage and add new books to the catalog.",
@@ -122,11 +122,16 @@
 
   "guest_guide": "Guest Guide",
   "guest_guide_1": "Browse the list of books available in the library.",
-  "guest_guide_2": "View book details including title, author, and genre.",
+  "guest_guide_2": "View book details including title, author, and genre (up to 5 books).",
   "guest_guide_3": "Register or log in to access more features like favorites",
 
   "view_books": "View Books",
   "add_to_favorite": "Add to Favorite",
   "view_details": "View Detail",
-  "search_placeholder": "Search by title, author, or genre..."
+  "search_placeholder": "Search by title, author, or genre...",
+
+  "Showing": "Showing",
+  "to": "to",
+  "of": "of",
+  "results": "results"
 }

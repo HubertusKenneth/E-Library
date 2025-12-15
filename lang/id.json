@@ -114,7 +114,7 @@
   "user_features": "Fitur Pengguna",
   "user_features_1": "Jelajah dan cari buku.",
   "user_features_2": "Lihat detail informasi buku.",
-  "user_features_3": "Tambah dan kelola buku favorit.",
+  "user_features_3": "Tambah dan kelola buku favorit (hingga 5 buku).",
 
   "admin_panel_overview": "Ringkasan Panel Admin",
   "admin_overview_1": "Kelola dan tambahkan buku baru ke katalog.",
@@ -123,13 +123,17 @@
 
   "guest_guide": "Panduan Pengunjung",
   "guest_guide_1": "Telusuri daftar buku yang tersedia di perpustakaan.",
-  "guest_guide_2": "Lihat detail buku termasuk judul, penulis, dan genre.",
+  "guest_guide_2": "Lihat detail buku termasuk judul, penulis, dan genre (hingga 5 buku).",
   "guest_guide_3": "Daftar atau masuk untuk mengakses fitur tambahan seperti favorit.",
 
 
   "view_books": "Lihat Buku",
   "add_to_favorite": "Tambah Favorit",
   "view_details": "Lihat Detail",
-  "search_placeholder": "Cari berdasarkan judul, penulis, atau genre..."
+  "search_placeholder": "Cari berdasarkan judul, penulis, atau genre...",
 
+  "Showing": "Menampilkan",
+  "to": "sampai",
+  "of": "dari",
+  "results": "hasil"
 }
