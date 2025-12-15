@@ -24,12 +24,12 @@ class UserAdminController extends Controller
             'password' => 'nullable|string|min:5',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password ?? 'admin123'),
-            'role' => 'admin',
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password ?? 'admin123');
+        $user->role = 'admin'; 
+        $user->save();
 
         return redirect()->route('admin.users.index')->with('success', 'New admin added successfully.');
     }

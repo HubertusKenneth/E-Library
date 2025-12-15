@@ -6,8 +6,7 @@
   <title>E-Library</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  @vite(['resources/css/app.css','resources/js/app.js'])
+  @vite(['resources/css/app.css','resources/js/app.js', 'resources/js/functions1.js'])
   <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body class="bg-gray-100">

@@ -141,9 +141,9 @@
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Admin</h2>
 
-        <form method="POST" action="{{ route('admin.users.store') }}" novalidate>
+        <form method="POST" action="{{ route('admin.users.store') }}" novalidate id="addAdminForm">
             @csrf
-
+            <input type="hidden" name="role" value="admin">
             {{-- Name --}}
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 mb-1">Name</label>
@@ -193,4 +193,3 @@
     const hasErrors = @json($errors->any());
 </script>
 @endsection
-
