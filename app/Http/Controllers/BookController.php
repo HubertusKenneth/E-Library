@@ -154,5 +154,16 @@ class BookController extends Controller
     }
 
 
-    public function destroy(string $id) {}
+    public function destroy(Book $book)
+    {
+        // hapus cover kalo ada
+        if ($book->cover && file_exists(public_path('covers/' . $book->cover))) {
+            unlink(public_path('covers/' . $book->cover));
+        }
+
+        $book->delete();
+
+        return redirect()->route('books.index')
+            ->with('success', 'Book deleted successfully!');
+    }
 }
