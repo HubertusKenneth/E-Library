@@ -22,7 +22,7 @@
             @method('PATCH')
 
             <div class="mb-4">
-                <label class="block font-semibold mb-1">{{ __('name') }}</label>
+                <label class="block font-semibold mb-1">{{ __('Name') }}</label>
                 <input
                     type="text"
                     name="name"
