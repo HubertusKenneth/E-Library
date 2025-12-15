@@ -24,7 +24,11 @@
         </a>
       </div>
     @empty
-      <p>{{ __('favorite_books') }}</p>
+      <div class="col-span-full flex justify-center items-center h-40">
+        <p class="text-gray-500 text-lg">
+          {{ __('no_favorites') }}
+        </p>
+      </div>
     @endforelse
   </div>
 

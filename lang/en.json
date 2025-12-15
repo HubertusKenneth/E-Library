@@ -1,5 +1,6 @@
 {
   "brand": "E-Library",
+  "library_catalog": "Library Catalog",
   "home": "Home",
   "features": "Features",
   "all_books": "All Books",
@@ -56,6 +57,8 @@
   "confirm_delete_user": "Are you sure you want to delete this user?",
   "books": "My Favorites",
   "sign_out": "Sign Out",
+  "forgot_password": "Forgot Password",
+  "already_registered": "Already Registered?",
 
   "user_guide": "User Guide",
   "user_guide_1": "Browse the book list without logging in",
@@ -66,6 +69,7 @@
   "view_and_explore_books": "View and explore books",
 
   "favorite_books": "Favorite Books",
+  "no_favorites": "Belum ada Buku Favorit",
 
   "sign_in": "Sign In",
   "email": "Email",
@@ -82,6 +86,7 @@
   "Dashboard": "Dashboard",
   "Delete Account": "Delete Account",
   "Email Password Reset Link": "Email Password Reset Link",
+  "Forgot Password Message": "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
   "Log Out": "Log Out",
   "Name": "Name",
   "New Password": "New Password",
