@@ -17,14 +17,13 @@ use App\Http\Controllers\HomeController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/locale/{locale}', function (string $locale) {
-    // minimal: terima apapun, tapi kita pakai hanya en/id
-    $locale = strtolower($locale);
-    if ($locale !== 'en' && $locale !== 'id') {
-        $locale = 'en';
+Route::get('/locale/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'id'])) {
+        abort(400);
     }
 
     Cookie::queue('locale', $locale, 60 * 24 * 365);
+
     return redirect()->back();
 })->name('locale.switch');
 
