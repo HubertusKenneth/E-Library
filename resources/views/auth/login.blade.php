@@ -1,6 +1,9 @@
 <x-guest-layout>
     <div class="flex justify-center mt-6">
-        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+        <img class="w-20 h-20 fill-current text-gray-500" src="{{ asset('storage/ReadSpaceLogo.png') }}"
+            alt="ReadSpace Logo"
+            class="h-10 w-10 object-contain">
+
     </div>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />

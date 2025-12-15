@@ -1,5 +1,5 @@
 {
-  "brand": "E-Library",
+  "brand": "ReadSpace",
   "library_catalog": "Library Catalog",
   "home": "Home",
   "features": "Features",
@@ -55,7 +55,7 @@
   "unfavorite": "Unfavorite",
   "current_favorites": "Current Favorites",
   "by_author_cap": "By Author",
-  "by_author_lower": "By author",
+  "by_author_lower": "By Author",
   "confirm_delete_book": "Are you sure you want to delete this book?",
   "confirm_delete_user": "Are you sure you want to delete this user?",
   "admin_accounts": "Admin Accounts",
@@ -134,5 +134,95 @@
   "Showing": "Showing",
   "to": "to",
   "of": "of",
-  "results": "results"
+  "results": "results",
+
+  "download_pdf": "Download PDF",
+  "favorite_success_status": "Added to favorites",
+  "login_unlock_more": "Login to unlock more features",
+  "about_us": "About Us",
+  "please_login": "Access Denied",
+  "login_needed_favorites": "Please Login to favorite a Book",
+  "book_added_to_favorites": "Book added to favorites",
+  "book_removed_from_favorites": "Book removed from favorites",
+  "activity_log": "Activity Log",
+    "activity.title": "Authentication Activity Log",
+  "activity.empty": "No authentication activity logs found.",
+  "activity.time": "Time",
+  "activity.action": "Action",
+  "activity.method": "Method",
+  "activity.user_id": "User ID",
+  "activity.ip": "IP Address",
+  "activity.logout": "Logout",
+  "activity.login_attempt": "Login Attempt",
+  "activity.register_attempt": "Register Attempt",
+  "activity.guest": "Guest",
+  "activity.showing": "Showing :from to :to of :total results",
+    "about.title": "About ReadSpace",
+  "about.application.title": "About the Application",
+  "about.application.p1": "ReadSpace is a simple web-based library application designed to help users browse, search, and manage a small library catalog digitally. This application provides an easy way to explore book collections, view detailed book information, and save favorite books for future reference.",
+  "about.application.p2": "ReadSpace is suitable for small libraries, study groups, or academic projects that require a lightweight and user-friendly digital catalog system.",
+
+  "about.target.title": "Target Users",
+  "about.target.students": "Students who want to search books and add books to their favorite list.",
+  "about.target.guests": "Guests who want to browse and check book details.",
+  "about.target.admin": "Library staff / Admin who want to manage and add new books.",
+
+  "about.features.title": "Menus & Features",
+  "about.features.book_list": "Book List",
+  "about.features.book_list_desc": "Displays all available books in the library catalog.",
+  "about.features.book_detail": "Book Details",
+  "about.features.book_detail_desc": "Shows detailed information about selected books.",
+  "about.features.favorite": "Favorite Books",
+  "about.features.favorite_desc": "Allows users to save and view favorite books.",
+  "about.features.search": "Search Books",
+  "about.features.search_desc": "Enables users to search for specific books.",
+  "about.features.auth": "Login & Register",
+  "about.features.auth_desc": "Allows users to create accounts and access more features.",
+
+  "about.team.title": "Development Team",
+  "about.footer.title": "ReadSpace Development Team",
+  "about.footer.subtitle1": "Computer Science Students",
+  "about.footer.subtitle2": "Web Programming Project",
+
+  "user.management": "User Management",
+  "user.admin_accounts": "Admin Accounts",
+  "user.user_accounts": "User Accounts",
+
+  "user.name": "Name",
+  "user.email": "Email",
+  "user.role": "Role",
+  "user.registered": "Registered Date",
+  "user.action": "Action",
+
+  "user.add_admin": "Add New Admin",
+
+  "user.success": "Success",
+  "user.error": "An error occurred",
+
+  "button.delete": "Delete",
+  "button.cancel": "Cancel",
+  "button.add": "Add",
+
+  "modal.delete_title": "Delete Confirmation",
+  "modal.delete_text": "Are you sure you want to delete the :role \":name\"?",
+
+  "modal.add_admin_title": "Add New Admin",
+
+  "form.name": "Name",
+  "form.email": "Email",
+  "form.password": "Password",
+
+  "role.admin": "Admin",
+  "role.user": "User",
+
+  "edit_book_title": "Edit Book",
+  "new_cover_optional": "New cover(optional)",
+  "upload_replace_cover": "Change Book Cover",
+  "update_book": "Update Book"
+
+
+
+
+
+
 }

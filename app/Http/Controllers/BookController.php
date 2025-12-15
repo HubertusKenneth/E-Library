@@ -116,17 +116,30 @@ class BookController extends Controller
             ->with('success', 'Book added successfully!');
     }
 
-    public function downloadPdf(Book $book)
-    {
-        if (!$book->pdf_path) {
-            abort(404);
-        }
-
-        return Storage::disk('public')->download(
-            $book->pdf_path,
-            $book->pdf_name
-        );
+public function downloadPdf(Book $book)
+{
+    if (!$book->pdf_path) {
+        abort(404);
     }
+
+    if (auth()->check() && auth()->user()->role === 'user') {
+        $user = auth()->user();
+
+        $alreadyRead = $user->readBooks()
+            ->where('book_id', $book->id)
+            ->exists();
+
+        if (!$alreadyRead) {
+            $user->readBooks()->attach($book->id);
+        }
+    }
+
+    return Storage::disk('public')->download(
+        $book->pdf_path,
+        $book->pdf_name
+    );
+}
+
 
     public function edit(Book $book)
     {
@@ -181,4 +194,6 @@ class BookController extends Controller
         return redirect()->route('books.index')
             ->with('success', 'Book deleted successfully!');
     }
+
+    
 }

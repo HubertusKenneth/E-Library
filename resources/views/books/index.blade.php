@@ -66,7 +66,7 @@
     @foreach($books as $book)
       <div class="bg-white rounded shadow p-6 flex flex-col">
         <h3 class="font-semibold">{{ $book->title }}</h3>
-        <p class="text-xs text-gray-500">{{ __('by_author_lower', ['author' => $book->author]) }}</p>
+        <p class="text-xs text-gray-500">{{ __('by_author_lower') }} {{ $book->author }}</p>
 
         <div class="my-4 flex justify-center">
           @if($book->cover)
@@ -94,6 +94,8 @@
               </form>
 
               @if(auth()->user()->role === 'admin')
+    
+              
                   <a href="{{ route('admin.books.edit', $book) }}"
                      class="w-10 h-10 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded transition">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +127,7 @@
                         </svg>
                       </button>
                   </form>
+                  
               @endif
           @else
               <button onclick="showPopup()"

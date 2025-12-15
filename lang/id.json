@@ -1,5 +1,5 @@
 {
-  "brand": "E-Library",
+  "brand": "ReadSpace",
   "library_catalog": "Katalog Perpustakaan",
   "home": "Beranda",
   "features": "Fitur",
@@ -55,7 +55,7 @@
   "unfavorite": "Hapus Favorit",
   "current_favorites": "Favorit Saat Ini",
   "by_author_cap": "Berdasarkan Penulis",
-  "by_author_lower": "Berdasarkan penulis",
+  "by_author_lower": "Berdasarkan Penulis",
   "confirm_delete_book": "Apakah kamu yakin ingin menghapus buku ini?",
   "confirm_delete_user": "Apakah kamu yakin ingin menghapus pengguna ini?",
   "admin_accounts": "Akun Admin",
@@ -136,5 +136,97 @@
   "Showing": "Menampilkan",
   "to": "sampai",
   "of": "dari",
-  "results": "hasil"
+  "results": "hasil",
+
+  "download_pdf": "Unduh PDF",
+  "favorite_success_status": "Ditambah ke favorit",
+  "login_unlock_more": "Login untuk membuka fitur lainnya",
+  "about_us": "Tentang Kami",
+  "please_login": "Akses ditolak",
+  "login_needed_favorites": "Silakan Masuk untuk menambahkan Buku ke Favorit",
+  "book_added_to_favorites": "Buku ditambahkan ke favorit",
+  "book_removed_from_favorites": "Buku dihapus dari favorit",
+  "activity_log": "Catatan Aktivitas",
+  "activity.title": "Catatan Aktivitas Autentikasi",
+  "activity.empty": "Tidak ada catatan aktivitas autentikasi.",
+  "activity.time": "Waktu",
+  "activity.action": "Aksi",
+  "activity.method": "Metode",
+  "activity.user_id": "ID Pengguna",
+  "activity.ip": "Alamat IP",
+  "activity.logout": "Keluar",
+  "activity.login_attempt": "Percobaan Masuk",
+  "activity.register_attempt": "Percobaan Daftar",
+  "activity.guest": "Tamu",
+  "activity.showing": "Menampilkan :from sampai :to dari :total data",
+    "about.title": "Tentang ReadSpace",
+
+  "about.application.title": "Tentang Aplikasi",
+  "about.application.p1": "ReadSpace adalah aplikasi perpustakaan berbasis web sederhana yang dirancang untuk membantu pengguna menelusuri, mencari, dan mengelola katalog perpustakaan secara digital. Aplikasi ini menyediakan cara mudah untuk menjelajahi koleksi buku, melihat detail buku, dan menyimpan buku favorit untuk referensi di kemudian hari.",
+  "about.application.p2": "ReadSpace cocok digunakan untuk perpustakaan kecil, kelompok belajar, atau proyek akademik yang membutuhkan sistem katalog digital yang ringan dan mudah digunakan.",
+
+  "about.target.title": "Target Pengguna",
+  "about.target.students": "Mahasiswa atau pelajar yang ingin mencari buku dan menambahkan buku ke daftar favorit.",
+  "about.target.guests": "Pengunjung yang ingin menjelajahi dan melihat detail buku.",
+  "about.target.admin": "Staf perpustakaan / Admin yang ingin mengelola dan menambahkan buku baru.",
+
+  "about.features.title": "Menu & Fitur",
+  "about.features.book_list": "Daftar Buku",
+  "about.features.book_list_desc": "Menampilkan seluruh buku yang tersedia dalam katalog perpustakaan.",
+  "about.features.book_detail": "Detail Buku",
+  "about.features.book_detail_desc": "Menampilkan informasi lengkap dari buku yang dipilih.",
+  "about.features.favorite": "Buku Favorit",
+  "about.features.favorite_desc": "Memungkinkan pengguna menyimpan dan melihat buku favorit.",
+  "about.features.search": "Pencarian Buku",
+  "about.features.search_desc": "Memungkinkan pengguna mencari buku tertentu.",
+  "about.features.auth": "Login & Registrasi",
+  "about.features.auth_desc": "Memungkinkan pengguna membuat akun dan mengakses fitur tambahan.",
+
+  "about.team.title": "Tim Pengembang",
+  "about.footer.title": "Tim Pengembang ReadSpace",
+  "about.footer.subtitle1": "Mahasiswa Ilmu Komputer",
+  "about.footer.subtitle2": "Proyek Web Programming",
+
+  "user.management": "Manajemen Pengguna",
+  "user.admin_accounts": "Akun Admin",
+  "user.user_accounts": "Akun Pengguna",
+
+  "user.name": "Nama",
+  "user.email": "Email",
+  "user.role": "Peran",
+  "user.registered": "Tanggal Daftar",
+  "user.action": "Aksi",
+
+  "user.add_admin": "Tambah Admin Baru",
+
+  "user.success": "Berhasil",
+  "user.error": "Terjadi kesalahan",
+
+  "button.delete": "Hapus",
+  "button.cancel": "Batal",
+  "button.add": "Tambah",
+
+  "modal.delete_title": "Konfirmasi Hapus",
+  "modal.delete_text": "Apakah Anda yakin ingin menghapus :role \":name\"?",
+
+  "modal.add_admin_title": "Tambah Admin Baru",
+
+  "form.name": "Nama",
+  "form.email": "Email",
+  "form.password": "Password",
+
+  "role.admin": "Admin",
+  "role.user": "User",
+
+  "edit_book_title": "Ubah Buku",
+  "new_cover_optional": "New cover(optional)",
+  "upload_replace_cover": "Ganti Sampul Buku",
+  "update_book": "Perbaharui Buku"
+
+
+
+
+
+
+
 }

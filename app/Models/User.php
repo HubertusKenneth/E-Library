@@ -53,8 +53,14 @@ class User extends Authenticatable
 
 public function isAdmin()
 {
-    // kita gunakan field is_admin di users table (boolean)
     return $this->is_admin === 1;
 }
+
+public function readBooks()
+{
+    return $this->belongsToMany(Book::class, 'book_user_reads')
+                ->withTimestamps();
+}
+
 
 }

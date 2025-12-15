@@ -1,6 +1,6 @@
-# E-Library (Laravel)
+# ReadSpace (Laravel)
 
-E-Library is a simple Laravel-based digital library application that allows users to browse book collections online. The application supports three different roles: guest, user, and admin, with varying access rights depending on each role.
+ReadSpace is a simple Laravel-based digital library application that allows users to browse book collections online. The application supports three different roles: guest, user, and admin, with varying access rights depending on each role.
 
 As a guest, users can view the book list and book details. Registered users can access more features, such as adding books to their favorites list. Meanwhile, admins have full control over adding, editing, and deleting book data in the catalog.Website Mini Library sederhana dengan 3 peran: **guest**, **user**, dan **admin**.
 

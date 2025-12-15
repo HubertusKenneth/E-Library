@@ -12,17 +12,27 @@ class FavoriteController extends Controller
         $this->middleware('auth');
     }
 
-    public function toggle(Book $book)
-    {
-        $user = auth()->user();
-        if ($user->favorites()->where('book_id', $book->id)->exists()) {
-            $user->favorites()->detach($book->id);
-            return back()->with('favorite_status','Removed from favorites'); 
-        } else {
-            $user->favorites()->attach($book->id);
-            return back()->with('favorite_status','Added to favorites');
-        }
+public function toggle(Book $book)
+{
+    $user = auth()->user();
+
+    if ($user->favorites()->where('book_id', $book->id)->exists()) {
+        $user->favorites()->detach($book->id);
+
+        return back()->with('alert', [
+            'type' => 'remove',
+            'message' => __('book_removed_from_favorites')
+        ]);
+    } else {
+        $user->favorites()->attach($book->id);
+
+        return back()->with('alert', [
+            'type' => 'add',
+            'message' => __('book_added_to_favorites')
+        ]);
     }
+}
+
 
 
     public function index()

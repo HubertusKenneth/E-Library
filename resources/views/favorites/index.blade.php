@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex items-center mb-4">
-    <h2 class="text-xl font-semibold mr-2">My Favorites</h2>
+    <h2 class="text-xl font-semibold mr-2">{{__('books')}}</h2>
     
     @if(isset($favoriteCount) && isset($maxFavorites))
       <span class="text-lg font-medium text-gray-700">
@@ -10,9 +10,6 @@
       </span>
     @endif
 </div>
-  <h2 class="text-xl font-semibold mb-4">
-    {{ __('books') }}
-  </h2>
 
   <div class="grid md:grid-cols-3 gap-6">
     @forelse($books as $book)

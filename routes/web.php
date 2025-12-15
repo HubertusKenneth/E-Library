@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 });
 
+Route::view('/about', 'about')->name('about');
+
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('books', BookAdminController::class);
 
@@ -75,5 +77,6 @@ Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('ca
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware(LogActivity::class);
+    
     
 require __DIR__ . '/auth.php';

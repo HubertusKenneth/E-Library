@@ -61,8 +61,32 @@ window.closeAddAdminModal = closeAddAdminModal;
 window.showPopup = showPopup;
 window.hidePopup = hidePopup;
 
+function showAlert() {
+    const alert = document.getElementById('alertBox');
+    if (!alert) return;
+
+    requestAnimationFrame(() => {
+        alert.classList.remove('-translate-y-full', 'opacity-0');
+    });
+
+    setTimeout(() => {
+        alert.classList.add('-translate-y-full', 'opacity-0');
+    }, 5000);
+
+    setTimeout(() => {
+        alert.remove();
+    }, 5500);
+}
+
+window.showAlert = showAlert;
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    const alertBox = document.getElementById('alertBox');
+    if (alertBox) {
+        showAlert();
+    }
+    
     if (typeof hasErrors !== 'undefined' && hasErrors) {
         requestAnimationFrame(() => {
             openAddAdminModal();
