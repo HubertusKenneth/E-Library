@@ -42,6 +42,7 @@
   "back": "Back",
   "back_to_home": "Back to Home",
   "back_to_genres": "Back to Genres",
+  "results_for_genre": "Book List for :genre",
   "detail": "Detail",
   "details": "Details",
   "read": "Read",
@@ -82,7 +83,7 @@
   "view_and_explore_books": "View and explore books",
 
   "favorite_books": "Favorite Books",
-  "no_favorites": "Belum ada Buku Favorit",
+  "no_favorites": "No Favorites Yet",
 
   "sign_in": "Sign In",
   "email": "Email",

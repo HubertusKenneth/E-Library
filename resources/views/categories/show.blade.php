@@ -2,7 +2,11 @@
 
 @section('content')
   <div class="flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-bold">{{ __('results_for_genre', ['genre' => $decodedGenre]) }}</h1>
+    <h1 class="text-2xl font-bold">
+      {{ __('results_for_genre', ['genre' => $decodedGenre]) }}
+    </h1>
+
+
 
     <a href="{{ url('/categories') }}"
        class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-900 transition">
