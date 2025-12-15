@@ -54,6 +54,8 @@
   "by_author_lower": "by author",
   "confirm_delete_book": "Are you sure you want to delete this book?",
   "confirm_delete_user": "Are you sure you want to delete this user?",
+  "books": "My Favorites",
+  "sign_out": "Sign Out",
 
   "user_guide": "User Guide",
   "user_guide_1": "Browse the book list without logging in",
@@ -94,10 +96,13 @@
   "user_features_2": "View detailed book information.",
   "user_features_3": "Add and manage your favorite books.",
 
-  "view_books": "Lihat Buku",
+  "guest_guide": "Guest Guide",
+  "guest_guide_1": "Browse the list of books available in the library.",
+  "guest_guide_2": "View book details including title, author, and genre.",
+  "guest_guide_3": "Register or log in to access more features like favorites",
+
+  "view_books": "View Books",
   "add_to_favorite": "Add to Favorite",
   "view_details": "View Detail",
-  "search_placeholder": "Search",
-
-  "sign_out": "Sign Out"
+  "search_placeholder": "Search by title, author, or genre..."
 }
