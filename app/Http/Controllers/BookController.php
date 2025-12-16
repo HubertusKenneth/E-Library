@@ -118,25 +118,23 @@ class BookController extends Controller
 
 public function downloadPdf(Book $book)
 {
-    if (!$book->pdf_path) {
-        abort(404);
-    }
+    abort_if(!$book->pdf_path, 404);
+
+    abort_if(
+        !Storage::disk('public')->exists($book->pdf_path),
+        404,
+        'PDF not found'
+    );
 
     if (auth()->check() && auth()->user()->role === 'user') {
-        $user = auth()->user();
-
-        $alreadyRead = $user->readBooks()
-            ->where('book_id', $book->id)
-            ->exists();
-
-        if (!$alreadyRead) {
-            $user->readBooks()->attach($book->id);
-        }
+        auth()->user()->readBooks()
+            ->syncWithoutDetaching([$book->id]);
     }
 
-    return Storage::disk('public')->download(
-        $book->pdf_path,
-        $book->pdf_name
+    return response()->download(
+        storage_path('app/public/'.$book->pdf_path),
+        $book->pdf_name ?? basename($book->pdf_path),
+        ['Content-Type' => 'application/pdf']
     );
 }
 
