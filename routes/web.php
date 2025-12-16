@@ -35,6 +35,21 @@ Route::get('/locale/{locale}', function ($locale) {
 })->name('locale.switch');
 
 Route::redirect('/home', '/');
+
+Route::get('/health/db', function() {
+    try {
+        \DB::connection()->getPdo();
+        return response()->json([
+            'status' => 'ok',
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
@@ -77,6 +92,6 @@ Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('ca
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware(LogActivity::class);
-    
-    
+
+
 require __DIR__ . '/auth.php';

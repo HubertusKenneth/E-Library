@@ -1,8 +1,6 @@
 *.log
 .DS_Store
-.env
-.env.backup
-.env.production
+.env*
 .phpactor.json
 .phpunit.result.cache
 /.fleet
@@ -23,3 +21,7 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
+.vercel
+
+ca-certificate.crt
+ca-certificate-base64.txt

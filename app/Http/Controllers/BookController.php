@@ -167,10 +167,7 @@ public function downloadPdf(Book $book)
         ]);
 
         if ($request->hasFile('cover')) {
-            $file = $request->file('cover');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('covers'), $filename);
-            $data['cover'] = $filename;
+            $data['cover'] = $request->file('cover')->store('covers', 'public');
         }
 
         $book->update($data);
@@ -183,8 +180,8 @@ public function downloadPdf(Book $book)
     public function destroy(Book $book)
     {
         // hapus cover kalo ada
-        if ($book->cover && file_exists(public_path('covers/' . $book->cover))) {
-            unlink(public_path('covers/' . $book->cover));
+        if ($book->cover && Storage::disk('public')->exists($book->cover)) {
+            Storage::disk('public')->delete($book->cover);
         }
 
         $book->delete();

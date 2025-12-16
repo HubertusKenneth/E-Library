@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Str;
 
+// Handle SSL certificate from base64 or file path
+$mysqlSslCa = env('MYSQL_ATTR_SSL_CA');
+if (!$mysqlSslCa && env('MYSQL_ATTR_SSL_CA_BASE64')) {
+    $mysqlSslCa = sys_get_temp_dir() . '/mysql-ca-cert.pem';
+    file_put_contents($mysqlSslCa, base64_decode(env('MYSQL_ATTR_SSL_CA_BASE64')));
+}
+
 return [
 
     /*
@@ -59,7 +66,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                PDO::MYSQL_ATTR_SSL_CA => $mysqlSslCa,
             ]) : [],
         ],
 
