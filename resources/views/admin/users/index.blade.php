@@ -17,7 +17,6 @@
         </div>
     @endif
 
-    {{-- ADMIN ACCOUNTS --}}
     <div class="flex justify-between items-center mb-3 mt-6 border-b pb-2">
         <h2 class="text-2xl font-semibold text-gray-700">
             {{ __('user.admin_accounts') }}
@@ -74,7 +73,6 @@
         </table>
     </div>
 
-    {{-- USER ACCOUNTS --}}
     <h2 class="text-2xl font-semibold text-gray-700 mb-3 mt-6 border-b pb-2">
         {{ __('user.user_accounts') }}
     </h2>
@@ -120,7 +118,6 @@
     </div>
 </div>
 
-{{-- DELETE MODAL --}}
 <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full">
         <h2 class="text-xl font-semibold mb-4">
@@ -147,7 +144,6 @@
     </div>
 </div>
 
-{{-- ADD ADMIN MODAL --}}
 <div id="addAdminModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-md">
         <h2 class="text-xl font-semibold mb-4">

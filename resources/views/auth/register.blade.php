@@ -12,7 +12,6 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        {{-- Name --}}
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input
@@ -28,7 +27,6 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        {{-- Email --}}
         <div class="mt-4">
             <x-input-label for="email" :value="__('email')" />
             <x-text-input
@@ -43,7 +41,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        {{-- Password --}}
         <div class="mt-4">
             <x-input-label for="password" :value="__('password')" />
             <x-text-input
@@ -57,7 +54,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        {{-- Confirm Password --}}
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
             <x-text-input
@@ -70,7 +66,6 @@
             />
         </div>
 
-        {{-- Button --}}
         <div class="flex justify-center mt-6">
             <x-primary-button>
                 {{ __('register') }}
@@ -78,7 +73,6 @@
         </div>
     </form>
 
-    {{-- Footer --}}
     <div class="flex flex-col items-center justify-center mt-6 space-y-2">
         <div>
             <span class="text-sm text-gray-600">

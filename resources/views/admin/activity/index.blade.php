@@ -3,19 +3,16 @@
 @section('content')
 <div class="container py-4">
 
-    {{-- Title --}}
     <h2 class="fw-bold mb-3">
         {{ __('activity.title') }}
     </h2>
 
-    {{-- Empty State --}}
     @if ($activityLogs->isEmpty())
         <div class="alert alert-warning">
             {{ __('activity.empty') }}
         </div>
     @else
 
-        {{-- Table --}}
         <div class="table-responsive">
             <table class="table table-striped align-middle">
                 <thead class="table-light">
@@ -63,7 +60,6 @@
             </table>
         </div>
 
-        {{-- Pagination --}}
         <div>
             
 

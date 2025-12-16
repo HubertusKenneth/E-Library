@@ -7,19 +7,16 @@
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-    {{-- Total Books --}}
     <div class="bg-white border rounded p-6 shadow text-center">
         <h2 class="text-lg font-semibold">{{ __('total_books') }}</h2>
         <p class="text-3xl font-bold mt-2">{{ $totalBooks }}</p>
     </div>
 
-    {{-- Total Genre --}}
     <div class="bg-white border rounded p-6 shadow text-center">
         <h2 class="text-lg font-semibold">{{ __('genre') }}</h2>
         <p class="text-3xl font-bold mt-2">{{ $totalGenres }}</p>
     </div>
 
-    {{-- Admin / User --}}
     @if(Auth::check())
         @if(Auth::user()->role === 'admin')
             <div class="bg-white border rounded p-6 shadow text-center">
@@ -41,14 +38,12 @@
         </div>
     @endif
 
-    {{-- Favorite Books --}}
     @if(Auth::check())
         <div class="bg-white border rounded p-6 shadow text-center">
             <h2 class="text-lg font-semibold">{{ __('current_favorites') }}</h2>
             <p class="text-3xl font-bold mt-2">{{ $totalFavorites }}</p>
         </div>
     @else
-        {{-- Guest Favorite (Locked) --}}
         <div class="relative bg-white border rounded p-6 shadow text-center overflow-visible">
 
             <div class="blur-sm select-none pointer-events-none">
@@ -61,7 +56,6 @@
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="relative group">
 
-                    {{-- Lock Icon --}}
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="none"
                          viewBox="0 0 24 24"
@@ -77,7 +71,6 @@
                                  a2.25 2.25 0 0 0-2.25-2.25h-10.5z" />
                     </svg>
 
-                    {{-- Tooltip --}}
                     <div
                         class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
                                px-3 py-1 rounded
@@ -95,7 +88,6 @@
 
 </div>
 
-{{-- Bottom Info --}}
 <div class="bg-white border rounded p-6 shadow mt-8">
     @if(!Auth::check())
         <h3 class="text-lg font-bold mb-3">{{ __('guest_guide') }}</h3>

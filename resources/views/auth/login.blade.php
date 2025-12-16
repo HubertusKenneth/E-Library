@@ -15,7 +15,6 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        {{-- Email --}}
         <div>
             <x-input-label for="email" :value="__('email')" />
             <x-text-input
@@ -31,7 +30,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        {{-- Password --}}
         <div class="mt-4">
             <x-input-label for="password" :value="__('password')" />
 
@@ -84,7 +82,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        {{-- Remember & Forgot --}}
         <div class="flex items-center justify-between mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input
@@ -106,7 +103,6 @@
             @endif
         </div>
 
-        {{-- Button --}}
         <div class="flex justify-center mt-6">
             <x-primary-button>
                 {{ __('sign_in') }}
@@ -114,7 +110,6 @@
         </div>
     </form>
 
-    {{-- Footer --}}
     <div class="flex flex-col items-center justify-center mt-6 space-y-2">
         <div>
             <span class="text-sm text-gray-600">
