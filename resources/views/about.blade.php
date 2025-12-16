@@ -105,11 +105,12 @@
             </div>
 
             <ul class="text-muted mb-0">
-                <li>{{ __('about.team.members.0') }}</li>
-                <li>{{ __('about.team.members.1') }}</li>
-                <li>{{ __('about.team.members.2') }}</li>
-                <li>{{ __('about.team.members.3') }}</li>
-                <li>{{ __('about.team.members.4') }}</li>
+                <li>Hubertus Kenneth Alfragisa - 2702214514</li>
+                <li>Vyone Louis - 2702212452</li>
+                <li>Clarissa Clementia - 2702218393</li>
+                <li>Felice Tania - 2702220901</li>
+                <li>Fendy Yurista - 2702254493</li>
+
             </ul>
         </section>
 

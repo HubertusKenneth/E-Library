@@ -219,7 +219,12 @@
   "new_cover_optional": "New cover(optional)",
   "upload_replace_cover": "Change Book Cover",
   "update_book": "Update Book",
-  "about.subtitle": "A simple digital library to explore, manage, and enjoy books"
+  "about.subtitle": "A simple digital library to explore, manage, and enjoy books",
+
+  "about.target.roles.students": "Student",
+  "about.target.roles.guests": "Guest",
+  "about.target.roles.admin": "Admin"
+
 
 
 
