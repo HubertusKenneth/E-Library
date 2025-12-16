@@ -106,22 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const togglePassword = document.getElementById('togglePassword');
-    if (togglePassword) {
-        togglePassword.addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const eyeOpen = document.getElementById('eyeOpen');
-            const eyeClosed = document.getElementById('eyeClosed');
-            
-            if (passwordInput && eyeOpen && eyeClosed) {
-                const isHidden = passwordInput.type === 'password';
-                passwordInput.type = isHidden ? 'text' : 'password';
-
-                eyeOpen.classList.toggle('hidden', !isHidden);
-                eyeClosed.classList.toggle('hidden', isHidden);
-            }
-        });
-    }
 
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
     if (toggleConfirmPassword) {
