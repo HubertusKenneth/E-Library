@@ -23,5 +23,5 @@ Thumbs.db
 
 .vercel
 
-ca-certificate.crt
+# ca-certificate.crt
 ca-certificate-base64.txt
