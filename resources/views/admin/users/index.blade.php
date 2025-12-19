@@ -22,13 +22,15 @@
                 {{ __('user.admin_accounts') }}
             </h2>
 
-            <button onclick="openAddAdminModal()"
-                class="bg-slate-800 text-white p-2 rounded-full hover:bg-slate-900 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
-            </button>
+            @if (auth()->user()->isSuperAdmin())
+                <button onclick="openAddAdminModal()"
+                    class="bg-slate-800 text-white p-2 rounded-full hover:bg-slate-900 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+            @endif
         </div>
 
         <div class="bg-white shadow rounded-lg overflow-hidden mb-10">
