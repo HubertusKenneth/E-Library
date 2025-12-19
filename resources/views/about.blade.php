@@ -52,11 +52,6 @@
                     <strong>{{ __('about.target.roles.guests') }}</strong> –
                     {{ __('about.target.guests') }}
                 </li>
-                <li>
-                    <i class="bi bi-shield-lock me-2"></i>
-                    <strong>{{ __('about.target.roles.admin') }}</strong> –
-                    {{ __('about.target.admin') }}
-                </li>
             </ul>
         </section>
 
@@ -120,7 +115,7 @@
                 <div class="d-flex justify-content-center mb-4">
                     <div class="developer-frame-rect shadow-sm">
                         <img src="{{ asset('storage/developers.jpeg') }}"
-                            alt="{{ __('about.footer.image_alt') }}"
+                            alt="{{ __('Developer Image') }}"
                             class="developer-photo-rect">
                     </div>
                 </div>
