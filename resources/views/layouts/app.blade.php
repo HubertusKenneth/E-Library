@@ -121,7 +121,7 @@
                         <a href="{{ route('books.index') }}"
                             class="block px-4 py-2 rounded hover:bg-slate-100">{{ __('view_books') }}</a>
                         @auth
-                            @if (auth()->user()->role === 'admin')
+                            @if (auth()->user()->isAdmin())
                                 <a href="{{ route('admin.books.create') }}"
                                     class="block px-4 py-2 rounded hover:bg-slate-100">{{ __('add_book') }}</a>
                             @endif
@@ -143,7 +143,7 @@
 
 
                 @auth
-                    @if (auth()->user()->role === 'admin')
+                    @if (auth()->user()->isAdmin())
                         <hr class="my-2">
                         <div class="px-4 py-2 text-xs uppercase text-gray-500 font-semibold tracking-wide">
                             {{ __('admin_panel') }}</div>
@@ -158,15 +158,6 @@
                     {{ __('about_us') }}
                 </a>
             </nav>
-
-            {{-- <div class="absolute bottom-16 left-0 w-full px-4">
-                <a href="{{ route('about') }}"
-                    class="block px-4 py-2 rounded text-gray-700 hover:bg-slate-100 hover:text-green-700">
-                    {{ __('about_us') }}
-                </a>
-            </div> --}}
-
-
         </aside>
 
         <div class="flex-1 flex flex-col h-screen">
