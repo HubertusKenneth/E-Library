@@ -8,7 +8,8 @@
         (window.i18n?.deleteUserConfirm || `Are you sure you want to delete user "__NAME__"?`)
             .replace('__NAME__', userName);
         modal.classList.remove('hidden');
-    }
+    } 
+    
 
     function closeModal() {
         document.getElementById('deleteModal').classList.add('hidden');
