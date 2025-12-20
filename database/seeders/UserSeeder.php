@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             ['email' => 'superadmin@library.com'],
             [
                 'name' => 'Super Admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make(env('ADMIN_PW', 'password')),
                 'role' => 'super_admin',
             ]
         );
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             ['email' => 'admin@library.com'],
             [
                 'name' => 'Admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make(env('ADMIN_PW', 'password')),
                 'role' => 'admin',
             ]
         );
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             ['email' => 'testuser@library.com'],
             [
                 'name' => 'Regular User',
-                'password' => Hash::make('password'),
+                'password' => Hash::make(env('ADMIN_PW', 'password')),
                 'role' => 'user',
             ]
         );
