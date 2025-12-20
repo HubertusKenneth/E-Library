@@ -1,9 +1,8 @@
 {
     "version": 2,
+    "framework": null,
     "functions": {
-        "api/index.php": {
-            "runtime": "vercel-php@0.7.4"
-        }
+        "api/index.php": { "runtime": "vercel-php@0.7.3" }
     },
     "routes": [
         {
@@ -15,6 +14,9 @@
             "dest": "/api/index.php"
         }
     ],
+    "public": true,
+    "buildCommand": "npm install && npm run build",
+    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",

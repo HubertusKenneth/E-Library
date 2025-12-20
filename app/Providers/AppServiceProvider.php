@@ -3,9 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-
+        // dont change
+        // on prod us https over http
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
         Paginator::useTailwind();
     }
 }
