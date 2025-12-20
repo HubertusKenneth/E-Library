@@ -39,7 +39,7 @@ class FavoriteLimit
             if ($favorite_count >= $max_favorites) {
                 Log::warning('FavoriteLimit Blocked Request: Limit Reached!');
                 
-                return back()->with('favorite_limit_error', "You have reached your limit of {$max_favorites} favorited books. Please remove one to add another.");
+                return back()->with(    'favorite_limit_error',__('popup.favorite_limit.message', ['max' => $max_favorites]));
             }
         }
         return $next($request);

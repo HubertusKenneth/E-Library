@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 15, 2025 at 03:34 PM
+-- Generation Time: Dec 19, 2025 at 08:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -76,6 +76,52 @@ INSERT INTO `books` (`id`, `title`, `author`, `publisher`, `year`, `genre`, `des
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `book_user_reads`
+--
+
+CREATE TABLE `book_user_reads` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `book_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `book_user_reads`
+--
+
+INSERT INTO `book_user_reads` (`id`, `user_id`, `book_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 21, '2025-12-15 17:35:14', '2025-12-15 17:35:14'),
+(2, 2, 20, '2025-12-15 17:35:25', '2025-12-15 17:35:25'),
+(3, 2, 22, '2025-12-15 17:35:32', '2025-12-15 17:35:32'),
+(4, 2, 23, '2025-12-16 11:49:46', '2025-12-16 11:49:46'),
+(5, 2, 24, '2025-12-16 11:49:52', '2025-12-16 11:49:52'),
+(6, 2, 25, '2025-12-16 11:50:00', '2025-12-16 11:50:00'),
+(7, 2, 26, '2025-12-16 11:50:06', '2025-12-16 11:50:06'),
+(8, 2, 27, '2025-12-16 11:50:10', '2025-12-16 11:50:10'),
+(9, 2, 28, '2025-12-16 11:50:15', '2025-12-16 11:50:15'),
+(10, 2, 29, '2025-12-16 11:50:20', '2025-12-16 11:50:20'),
+(11, 2, 30, '2025-12-16 11:50:23', '2025-12-16 11:50:23'),
+(12, 2, 32, '2025-12-16 11:50:40', '2025-12-16 11:50:40'),
+(13, 2, 33, '2025-12-16 11:50:47', '2025-12-16 11:50:47'),
+(14, 2, 34, '2025-12-16 11:50:53', '2025-12-16 11:50:53'),
+(15, 6, 20, '2025-12-16 11:53:14', '2025-12-16 11:53:14'),
+(16, 6, 21, '2025-12-16 11:53:17', '2025-12-16 11:53:17'),
+(17, 6, 22, '2025-12-16 11:53:25', '2025-12-16 11:53:25'),
+(18, 6, 23, '2025-12-16 11:53:29', '2025-12-16 11:53:29'),
+(19, 6, 24, '2025-12-16 11:53:34', '2025-12-16 11:53:34'),
+(20, 6, 25, '2025-12-16 11:53:38', '2025-12-16 11:53:38'),
+(21, 6, 26, '2025-12-16 11:53:42', '2025-12-16 11:53:42'),
+(22, 6, 27, '2025-12-16 11:53:46', '2025-12-16 11:53:46'),
+(23, 6, 28, '2025-12-16 11:53:50', '2025-12-16 11:53:50'),
+(24, 6, 43, '2025-12-16 12:04:10', '2025-12-16 12:04:10'),
+(25, 6, 32, '2025-12-16 12:06:02', '2025-12-16 12:06:02'),
+(26, 6, 37, '2025-12-16 12:06:22', '2025-12-16 12:06:22');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cache`
 --
 
@@ -84,16 +130,6 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `cache`
---
-
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-guest-book-views:127.0.0.1', 'i:1;', 1765809236),
-('laravel-cache-guest-book-views:127.0.0.1:timer', 'i:1765809236;', 1765809236),
-('laravel-cache-guest-read-throttle:127.0.0.1', 'i:5;', 1765726993),
-('laravel-cache-guest-read-throttle:127.0.0.1:timer', 'i:1765726993;', 1765726993);
 
 -- --------------------------------------------------------
 
@@ -136,6 +172,13 @@ CREATE TABLE `favorites` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`id`, `user_id`, `book_id`, `created_at`, `updated_at`) VALUES
+(39, 2, 21, '2025-12-15 17:50:21', '2025-12-15 17:50:21');
 
 -- --------------------------------------------------------
 
@@ -196,7 +239,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2025_09_22_110313_create_favorites_table', 1),
 (6, '2025_09_23_134654_add_role_to_users_table', 2),
 (7, '2025_10_08_100000_create_user_activities_table', 3),
-(8, '2025_12_15_005538_add_pdf_to_books_table', 4);
+(8, '2025_12_15_005538_add_pdf_to_books_table', 4),
+(9, '2025_12_16_003140_create_book_user_reads_table', 5);
 
 -- --------------------------------------------------------
 
@@ -237,8 +281,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2XcNf41sfd2SUr9EmAZD31MqUMJEyUeexnsz8Kdi', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZksxU3FQT1R3N1RWVE1iaER3R1FheERDY2dWUEZ6SzNhYzNwT3U2NiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9hY3Rpdml0eT9wYWdlPTEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1765808611),
-('SKQzQWJbGfpYm9whAOLBk8VlUzJD67aSFtWQcGm6', 1, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVlpDZDd5SWhHUm9wb1hmUW5QUElodmdXUHRiQ1EyNmp0YUs1Y2F0WiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29rcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1765809240);
+('b0zaLbRtGmvQ8ATm36zENkpc0muZPWg3KoPIhsdP', 14, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieXVqbTdLaDB0QnNFRmR5U3FnZjNqQ3hWdUV0VzA1ajc4c05pRlhpMSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi91c2VycyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE0O30=', 1766172076);
 
 -- --------------------------------------------------------
 
@@ -266,7 +309,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (1, 'Test01', 'test@test.com', NULL, '$2y$12$r2sA1QGAERzQ8Yh1QTsZU.yVsPcCI.J78pdcgy2xfBzDAQt7cWB6u', NULL, '2025-09-22 05:17:28', '2025-09-22 05:17:28', 'user'),
 (2, 'Kenn', 'hubertusk26@gmail.com', NULL, '$2y$12$2buWkdYn1GsLWC.vfAgNuuaZd0JOc8iv9EWjR/xCkFt.gdBLXbtSC', NULL, '2025-09-22 08:36:04', '2025-09-22 08:36:04', 'user'),
 (3, 'admin', 'admin@library.com', NULL, '$2y$12$KunmWfafjGUxphZpPDtxOuCTuswvEfsNhdsP3mAjq9iUfJkd0lATS', NULL, '2025-09-22 09:51:10', '2025-10-08 06:59:19', 'admin'),
-(5, 'fendy', 'fendy@gmail.com', NULL, '$2y$12$i3c9tzs0P4DxdXM5nQzTMOPYvCkYnz3QEIJkKbDSn2ko8czPIxbl2', NULL, '2025-12-15 13:08:58', '2025-12-15 13:08:58', 'user');
+(5, 'fendy', 'fendy@gmail.com', NULL, '$2y$12$i3c9tzs0P4DxdXM5nQzTMOPYvCkYnz3QEIJkKbDSn2ko8czPIxbl2', NULL, '2025-12-15 13:08:58', '2025-12-15 13:08:58', 'user'),
+(6, 'Vyone', 'vyone@gmail.com', NULL, '$2y$12$bnnKgfHXYIoNxtbj50DVO.BQHRRASWt8M.oygRXgzj8p/WOxEcJQS', NULL, '2025-12-16 11:53:07', '2025-12-16 11:53:07', 'user'),
+(14, 'superadmin', 'super@admin.com', NULL, '$2y$12$ollYXZEH5icTYYJQbn0tvePTB9yCy6CSvEjD1pyW9Inw8kAgkQnAa', NULL, '2025-12-19 18:33:14', '2025-12-19 18:32:04', 'super_admin');
 
 -- --------------------------------------------------------
 
@@ -326,6 +371,14 @@ INSERT INTO `user_activities` (`id`, `user_id`, `action`, `model_type`, `model_i
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `book_user_reads`
+--
+ALTER TABLE `book_user_reads`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `book_user_reads_user_id_book_id_unique` (`user_id`,`book_id`),
+  ADD KEY `book_user_reads_book_id_foreign` (`book_id`);
 
 --
 -- Indexes for table `cache`
@@ -414,6 +467,12 @@ ALTER TABLE `books`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
+-- AUTO_INCREMENT for table `book_user_reads`
+--
+ALTER TABLE `book_user_reads`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -423,7 +482,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -435,13 +494,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_activities`
@@ -452,6 +511,13 @@ ALTER TABLE `user_activities`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `book_user_reads`
+--
+ALTER TABLE `book_user_reads`
+  ADD CONSTRAINT `book_user_reads_book_id_foreign` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `book_user_reads_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `favorites`
