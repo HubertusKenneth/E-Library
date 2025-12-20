@@ -47,20 +47,23 @@ class User extends Authenticatable
     }
 
     public function favorites()
-{
-    return $this->belongsToMany(Book::class, 'favorites')->withTimestamps();
-}
+    {
+        return $this->belongsToMany(Book::class, 'favorites')->withTimestamps();
+    }
 
-public function isAdmin()
-{
-    return $this->is_admin === 1;
-}
+    public function isSuperAdmin()
+    {
+        return $this->role === 'super_admin';
+    }
 
-public function readBooks()
-{
-    return $this->belongsToMany(Book::class, 'book_user_reads')
-                ->withTimestamps();
-}
+    public function isAdmin()
+    {
+        return in_array($this->role, ['admin', 'super_admin']);
+    }
 
-
+    public function readBooks()
+    {
+        return $this->belongsToMany(Book::class, 'book_user_reads')
+            ->withTimestamps();
+    }
 }

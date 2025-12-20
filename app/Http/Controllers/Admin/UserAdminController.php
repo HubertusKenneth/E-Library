@@ -28,7 +28,7 @@ class UserAdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password ?? 'admin123');
-        $user->role = 'admin'; 
+        $user->role = 'admin';
         $user->save();
 
         return redirect()->route('admin.users.index')->with('success', 'New admin added successfully.');
@@ -37,17 +37,29 @@ class UserAdminController extends Controller
 
     public function destroy($id)
     {
-        if (auth()->id() == $id) {
-            return redirect()->route('admin.users.index')
-                ->with('error', 'You cannot delete your own account.');
+        $currentUser = auth()->user();
+        $userToDelete = User::findOrFail($id);
+
+        // 1. Prevent self-deletion
+        if ($currentUser->id == $id) {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot delete your own account.');
         }
 
-        $user = User::findOrFail($id);
-        $role = ucfirst($user->role); 
-        
-        $user->delete();
+        // 2. Logic: If the user being deleted is an Admin, only a Super Admin can do it.
+        if ($userToDelete->role === 'admin' && !$currentUser->isSuperAdmin()) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Only Super Admins can delete Admin accounts.');
+        }
+
+        // 3. Prevent anyone from deleting a Super Admin (optional safety)
+        if ($userToDelete->role === 'super_admin') {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Super Admin accounts cannot be deleted.');
+        }
+
+        $userToDelete->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', $role . ' deleted successfully.');
+            ->with('success', ucfirst($userToDelete->role) . ' deleted successfully.');
     }
 }
