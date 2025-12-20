@@ -165,6 +165,7 @@
   "about.target.title": "Target Users",
   "about.target.students": "Students who want to search books and add books to their favorite list.",
   "about.target.guests": "Guests who want to browse and check book details.",
+  "about.target.admin": "Library staff / Admin who want to manage and add new books.",
 
   "about.features.title": "Menus & Features",
   "about.features.book_list": "Book List",
@@ -195,7 +196,6 @@
 
   "user.add_admin": "Add New Admin",
 
-  
   "user.success": "Success",
   "user.error": "An error occurred",
 
@@ -223,7 +223,19 @@
 
   "about.target.roles.students": "Student",
   "about.target.roles.guests": "Guest",
-  "about.target.roles.admin": "Admin"
+  "about.target.roles.admin": "Admin",
+
+  "super_admin_panel_overview": "Super Admin Panel Overview",
+  "super_admin_overview_1": "Have access to manage and use all features",
+  "login_now": "Login now",
+  "popup.access_denied.title": "Access Denied",
+  "popup.access_denied.message": "You have viewed 5 books. Please log in to view more details.",
+  "popup.access_denied.login_now": "Login now",
+  "popup.access_denied.dismiss": "Dismiss",
+  "popup.favorite_limit.title": "Favorite Limit Reached",
+  "popup.favorite_limit.message": "You have reached your limit of :max favorited books. Please remove one to add another."
+
+
 
 
 

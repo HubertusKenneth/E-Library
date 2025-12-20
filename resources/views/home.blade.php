@@ -18,7 +18,7 @@
     </div>
 
     @if(Auth::check())
-        @if(Auth::user()->role === 'admin')
+        @if(Auth::user()->role === 'admin' || Auth::user()->role === 'super_admin')
             <div class="bg-white border rounded p-6 shadow text-center">
                 <h2 class="text-lg font-semibold">{{ __('registered_users') }}</h2>
                 <p class="text-3xl font-bold mt-2">{{ $totalUsers }}</p>
@@ -109,6 +109,13 @@
             <li>{{ __('admin_overview_1') }}</li>
             <li>{{ __('admin_overview_2') }}</li>
             <li>{{ __('admin_overview_3') }}</li>
+        </ul>
+    @elseif(Auth::user()->role === 'super_admin')
+        <h3 class="text-lg font-bold mb-3">{{ __('super_admin_panel_overview') }}</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li>{{ __('super_admin_overview_1') }}</li>
+            <!-- <li>{{ __('admin_overview_2') }}</li>
+            <li>{{ __('admin_overview_3') }}</li> -->
         </ul>
     @endif
 </div>

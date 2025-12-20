@@ -224,7 +224,19 @@
   "about.subtitle": "Sebuah perpustakaan digital sederhana untuk menjelajahi, mengelola, dan menikmati buku.",
   "about.target.roles.students": "Mahasiswa",
   "about.target.roles.guests": "Pengunjung",
-  "about.target.roles.admin": "Admin"
+  "about.target.roles.admin": "Admin",
+
+  "super_admin_panel_overview": "Ringkasan Panel Super Admin",
+  "super_admin_overview_1": "Mempunyai akses untuk mengatur dan menggunakan semua fitur ",
+  "login_now": "Login sekarang",
+  "popup.access_denied.title": "Akses Ditolak",
+  "popup.access_denied.message": "Anda telah melihat 5 buku. Silakan login untuk melihat detail lebih lanjut.",
+  "popup.access_denied.login_now": "Login sekarang",
+  "popup.access_denied.dismiss": "Tutup",
+  "popup.favorite_limit.title": "Batas Favorit Tercapai",
+  "popup.favorite_limit.message": "Anda telah mencapai batas maksimal :max buku favorit. Silakan hapus salah satu untuk menambahkan yang lain."
+
+
 }
 
 
