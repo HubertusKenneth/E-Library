@@ -46,18 +46,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users->whereIn('role', ['admin', 'super_admin']) as $index => $user)
+                    @foreach ($users->whereIn('role', ['admin']) as $index => $user)
                         <tr class="border-t hover:bg-gray-50">
                             <td class="py-2 px-4">{{ $index + 1 }}</td>
                             <td class="py-2 px-4">{{ $user->name }}</td>
                             <td class="py-2 px-4">{{ $user->email }}</td>
-                            <td class="py-2 px-4">
-                                @if ($user->role === 'super_admin')
-                                    <span>Super Admin</span>
-                                @else
-                                    {{ __('role.admin') }}
-                                @endif
-                            </td>
+                            <td class="py-2 px-4"> {{ __('role.admin') }}</td>
                             <td class="py-2 px-4">{{ $user->created_at->format('Y-m-d') }}</td>
                             <td class="py-2 px-4">
                                 @php
