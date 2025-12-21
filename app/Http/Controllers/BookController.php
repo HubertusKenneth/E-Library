@@ -124,19 +124,18 @@ public function downloadPdf(Book $book)
 {
     abort_if(!$book->pdf_path, 404);
 
-    abort_if(
-        !Storage::disk('public')->exists($book->pdf_path),
-        404,
-        'PDF not found'
-    );
+    $fullPath = public_path('storage/' . $book->pdf_path);
+
+    if (!file_exists($fullPath)) {
+        abort(404, 'PDF file not found on server');
+    }
 
     if (auth()->check() && auth()->user()->role === 'user') {
-        auth()->user()->readBooks()
-            ->syncWithoutDetaching([$book->id]);
+        auth()->user()->readBooks()->syncWithoutDetaching([$book->id]);
     }
 
     return response()->download(
-        storage_path('app/public/'.$book->pdf_path),
+        $fullPath,
         $book->pdf_name ?? basename($book->pdf_path),
         ['Content-Type' => 'application/pdf']
     );
