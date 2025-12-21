@@ -69,13 +69,13 @@
         <p class="text-xs text-gray-500">{{ __('by_author_lower') }} {{ $book->author }}</p>
 
         <div class="my-4 flex justify-center">
-    @if($book->cover)
-        <img 
-            src="{{ asset('storage/'.$book->cover) }}" 
-            class="h-40 object-contain" 
-            alt="cover"
-        >
-    @else
+      @if($book->cover)
+          <img 
+              src="{{ asset('storage/'.$book->cover) }}" 
+              class="h-40 object-contain" 
+              alt="cover"
+          >
+      @else
 
             <div class="h-40 w-32 bg-gray-200 flex items-center justify-center">200x300</div>
           @endif
