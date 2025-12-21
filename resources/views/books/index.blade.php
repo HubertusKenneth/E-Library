@@ -70,7 +70,7 @@
 
         <div class="my-4 flex justify-center">
       @if($book->cover)
-          <img src="{{ Storage::url('covers/' . $book->cover) }}" class="h-40 object-contain" alt="cover">
+        <img src="{{ Storage::url($book->cover) }}" class="h-40 object-contain" alt="cover">
       @else
 
             <div class="h-40 w-32 bg-gray-200 flex items-center justify-center">200x300</div>
