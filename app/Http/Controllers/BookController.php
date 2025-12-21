@@ -100,13 +100,10 @@ class BookController extends Controller
             'description',
         ]);
 
-        // ✅ COVER (INI YANG HILANG)
         if ($request->hasFile('cover')) {
             $data['cover'] = $request->file('cover')->store('covers', 'public');
-            // hasil: covers/nama.jpg
         }
 
-        // PDF
         if ($request->hasFile('pdf')) {
             $pdf = $request->file('pdf');
             $pdfName = time() . '_' . $pdf->getClientOriginalName();
