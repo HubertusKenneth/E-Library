@@ -88,7 +88,7 @@ class BookController extends Controller
             'genre' => 'required|string|max:255',
             'description' => 'nullable|string',
             'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'pdf' => 'nullable|mimes:pdf|max:10240', // 10MB
+            'pdf' => 'nullable|mimes:pdf|max:10240',
         ]);
 
         $data = $request->only([
@@ -99,6 +99,12 @@ class BookController extends Controller
             'genre',
             'description',
         ]);
+
+        // ✅ COVER (INI YANG HILANG)
+        if ($request->hasFile('cover')) {
+            $data['cover'] = $request->file('cover')->store('covers', 'public');
+            // hasil: covers/nama.jpg
+        }
 
         // PDF
         if ($request->hasFile('pdf')) {
@@ -115,6 +121,7 @@ class BookController extends Controller
         return redirect()->route('books.index')
             ->with('success', 'Book added successfully!');
     }
+
 
 public function downloadPdf(Book $book)
 {
