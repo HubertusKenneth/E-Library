@@ -90,8 +90,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{genre}', [CategoryController::class, 'show'])->name('categories.show');
 
+Route::get('/fix-my-storage', function () {
+    // 1. Create the folders if they are missing
+    Storage::disk('public')->makeDirectory('covers');
+    Storage::disk('public')->makeDirectory('pdfs');
+
+    // 2. Run the symlink command programmatically
+    Artisan::call('storage:link');
+
+    // 3. List what is inside the folder to see if files are actually there
+    $files = Storage::disk('public')->allFiles('covers');
+
+    return [
+        'message' => 'Folders checked and Symlink command run!',
+        'files_found_in_covers' => $files,
+        'current_app_url' => config('app.url'),
+    ];
+});
+
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware(LogActivity::class);
+    
 
 
 require __DIR__ . '/auth.php';
