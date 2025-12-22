@@ -120,26 +120,20 @@ class BookController extends Controller
     }
 
 
-public function downloadPdf(Book $book)
-{
-    abort_if(!$book->pdf_path, 404);
+    public function downloadPdf(Book $book)
+    {
+        abort_if(!$book->pdf_path, 404);
 
-    $fullPath = public_path('storage/' . $book->pdf_path);
+        if (!Storage::disk('public')->exists($book->pdf_path)) {
+            abort(404, 'File tidak ditemukan di server.');
+        }
 
-    if (!file_exists($fullPath)) {
-        abort(404, 'PDF file not found on server');
+        if (auth()->check() && auth()->user()->role === 'user') {
+            auth()->user()->readBooks()->syncWithoutDetaching([$book->id]);
+        }
+
+        return Storage::disk('public')->download($book->pdf_path, $book->pdf_name ?? basename($book->pdf_path));
     }
-
-    if (auth()->check() && auth()->user()->role === 'user') {
-        auth()->user()->readBooks()->syncWithoutDetaching([$book->id]);
-    }
-
-    return response()->download(
-        $fullPath,
-        $book->pdf_name ?? basename($book->pdf_path),
-        ['Content-Type' => 'application/pdf']
-    );
-}
 
 
     public function edit(Book $book)
