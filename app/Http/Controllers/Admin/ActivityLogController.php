@@ -16,7 +16,7 @@ class ActivityLogController extends Controller
 
         if (File::exists($logPath)) {
             $logContent = File::get($logPath);
-            $pattern = '/^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] local\.INFO: Incoming Request (.*)$/m';
+            $pattern = '/^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] \w+\.INFO: Incoming Request (.*)$/m';
             
             if (preg_match_all($pattern, $logContent, $matches, PREG_SET_ORDER)) {
                 
